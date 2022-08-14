@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const Overview = () => {
 
-    const [reservations, setReservations] = useState(null)
+const [reservations, setReservations] = useState(null)
 
 useEffect(() => {
 
@@ -11,7 +11,6 @@ useEffect(() => {
 
         const response = await fetch('/reservations')
         const json = await response.json()
-        console.log(json)
 
         if (response.ok) {
             setReservations(json)
