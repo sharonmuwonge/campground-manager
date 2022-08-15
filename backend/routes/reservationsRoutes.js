@@ -3,6 +3,9 @@ const router = express.Router()
 
 const {getReservations,
         getReservation,
+        getReservationsArrivals,
+        getReservationsDepartures,
+        getReservationsCheckedin,
         createReservation,
         updateReservation,
         deleteReservation
@@ -10,6 +13,15 @@ const {getReservations,
 
 // Get all reservations
 router.get('/', getReservations)
+
+// Get all reservations
+router.get('/:arriveDate/arrivals', getReservationsArrivals)
+
+// Get all reservations
+router.get('/:departDate/departures', getReservationsDepartures)
+
+// Get all reservations
+router.get('/:arriveDate&:departDate/checkedin', getReservationsCheckedin)
 
 // Create a new reservation
 router.post('/', createReservation)

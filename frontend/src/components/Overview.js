@@ -1,5 +1,6 @@
 // import { Input } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 
 const Overview = () => {
 
@@ -35,7 +36,9 @@ useEffect(() => {
                     <ul id="arrivals" className='reservations'>
                         {/* fetch reservations from database and create link + li's */}
                         {reservations && reservations.map((reservation) => (
-                             <li key={reservation._id}>{reservation.firstName}</li>
+                            <Link to={`/reservations/${reservation._id}`} className='nav-link'> 
+                                <li key={reservation._id}>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate} - {reservation.departDate}</li>
+                            </Link>
                         ))}
                     </ul>
                 </li>

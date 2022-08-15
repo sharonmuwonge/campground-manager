@@ -1,11 +1,61 @@
 const Reservation = require('../models/reservationModel')
 const mongoose = require('mongoose')
 
-//Get all reservations for overview, GET /reservations, private
+//Get all reservations in descending order, GET /reservations, private
 
 const getReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find({}).sort({createdAt: -1})
+    res.status(200).json(reservations)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+//Get reservations that match with selected arrival date, GET /reservations/{date}/arrivals
+
+const getReservationsArrivals = async (req, res) => {
+    const {arriveDate} = req.params
+    console.log(arriveDate)
+
+    try {
+        const reservations = await Reservation.find({arriveDate: arriveDate}).sort({createdAt: -1})
+    res.status(200).json(reservations)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+
+
+}
+
+//Get reservations that match with selected arrival date, GET /reservations/{date}/departures
+
+const getReservationsDepartures = async (req, res) => {
+    const {departDate} = req.params
+    console.log(departDate)
+
+    try {
+        const reservations = await Reservation.find({departDate: departDate}).sort({createdAt: -1})
+    res.status(200).json(reservations)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+//Get reservations that match with selected arrival date, GET /reservations/{date}/checkedin
+
+const getReservationsCheckedin = async (req, res) => {
+    const {arriveDate} = req.params
+    const {departDate} = req.params
+    console.log(arriveDate, departDate)
+
+    try {
+        const reservations = await Reservation.find({
+            "arriveDate": { $lte: arriveDate
+            },
+            "departDate": { $gt: departDate
+            }
+        }).sort({createdAt: -1})
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -77,4 +127,4 @@ const deleteReservation = async (req, res) => {
     res.status(200).json(`Reservation ${id} deleted.`)
 }
 
-module.exports = {getReservations, getReservation, createReservation, updateReservation, deleteReservation}
+module.exports = {getReservations, getReservationsArrivals, getReservationsDepartures, getReservationsCheckedin, getReservation, createReservation, updateReservation, deleteReservation}
