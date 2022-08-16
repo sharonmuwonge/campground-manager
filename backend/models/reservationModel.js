@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 
 const reservationSchema = new Schema({
     arriveDate: {
-        type: String,
+        type: Date,
         required: true
     },
     departDate: {
-        type: String,
+        type: Date,
         required: true
     },
     firstName: {
@@ -17,6 +17,10 @@ const reservationSchema = new Schema({
     },
     lastName: {
         type: String,
+        required: true
+    },
+    checkedin: {
+        type: Boolean,
         required: true
     }
 }, {timestamps: true})

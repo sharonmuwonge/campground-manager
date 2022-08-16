@@ -12,14 +12,14 @@ const getReservations = async (req, res) => {
     }
 }
 
-//Get reservations that match with selected arrival date, GET /reservations/{date}/arrivals
+//Get reservations that match with selected arrival date, GET /reservations/:date/arrivals
 
 const getReservationsArrivals = async (req, res) => {
-    const {arriveDate} = req.params
-    console.log(arriveDate)
+    const {date} = req.params
+    console.log(date)
 
     try {
-        const reservations = await Reservation.find({arriveDate: arriveDate}).sort({createdAt: -1})
+        const reservations = await Reservation.find({arriveDate: date}).sort({createdAt: -1})
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -28,32 +28,31 @@ const getReservationsArrivals = async (req, res) => {
 
 }
 
-//Get reservations that match with selected arrival date, GET /reservations/{date}/departures
+//Get reservations that match with selected arrival date, GET /reservations/:date/departures
 
 const getReservationsDepartures = async (req, res) => {
-    const {departDate} = req.params
-    console.log(departDate)
+    const {date} = req.params
+    console.log(date)
 
     try {
-        const reservations = await Reservation.find({departDate: departDate}).sort({createdAt: -1})
+        const reservations = await Reservation.find({departDate: date}).sort({createdAt: -1})
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
 
-//Get reservations that match with selected arrival date, GET /reservations/{date}/checkedin
+//Get reservations that arrive earlier than selected date and depart later than selected date, GET /reservations/:date/checkedin
 
 const getReservationsCheckedin = async (req, res) => {
-    const {arriveDate} = req.params
-    const {departDate} = req.params
-    console.log(arriveDate, departDate)
+    const {date} = req.params
+    console.log(date)
 
     try {
         const reservations = await Reservation.find({
-            "arriveDate": { $lte: arriveDate
+            "arriveDate": { $lte: date
             },
-            "departDate": { $gt: departDate
+            "departDate": { $gt: date
             }
         }).sort({createdAt: -1})
     res.status(200).json(reservations)

@@ -16,9 +16,7 @@ const Navbar = () => {
                 {/* {click ? <CloseIcon /> : < HamburgerIcon />} */}
             </div>
             <form action="/selectedFacility" method="post" name="selectedFacility" id="selectedFacility">
-                <select name="selectFacility" id="selectFacility">
-               {/* import facility values from user in db, possibly remove action and method attributes */}
-                </select>
+                {/* insert facility select component */}
             </form>
             {/* when handle is clicked, add 'active' css to nav-menu: expand on mobile */}
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>

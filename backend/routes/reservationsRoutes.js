@@ -15,13 +15,13 @@ const {getReservations,
 router.get('/', getReservations)
 
 // Get all reservations
-router.get('/:arriveDate/arrivals', getReservationsArrivals)
+router.get('/:date/arrivals', getReservationsArrivals)
 
 // Get all reservations
-router.get('/:departDate/departures', getReservationsDepartures)
+router.get('/:date/departures', getReservationsDepartures)
 
 // Get all reservations
-router.get('/:arriveDate&:departDate/checkedin', getReservationsCheckedin)
+router.get('/:date/checkedin', getReservationsCheckedin)
 
 // Create a new reservation
 router.post('/', createReservation)
