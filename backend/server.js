@@ -18,8 +18,9 @@ app.use((req, res, next) => {
     next()
 })
 
-// log req path, method and body for each server call
+// Access to routes
 app.use('/reservations', reservationsRoutes)
+app.use('/users', userRoutes)
 
 // port selection
 const port = process.env.PORT || 5000
