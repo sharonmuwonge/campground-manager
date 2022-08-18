@@ -46,6 +46,7 @@ const ReservationForm = () => {
             <label>Checked in:</label>
             <input type="boolean" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
 
+            {/* Replace button with component? */}
             <button>Add reservation</button>
         </form>
     )

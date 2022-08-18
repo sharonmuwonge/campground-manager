@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {getReservations,
+const {getLatestReservations,
         getReservation,
         getReservationsArrivals,
         getReservationsDepartures,
@@ -12,7 +12,7 @@ const {getReservations,
     } = require('../controllers/reservationController')
 
 // Get all reservations
-router.get('/', getReservations)
+router.get('/latest', getLatestReservations)
 
 // Get all reservations
 router.get('/:date/arrivals', getReservationsArrivals)

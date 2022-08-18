@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 
 //Get all reservations in descending order, GET /reservations, private
 
-const getReservations = async (req, res) => {
+const getLatestReservations = async (req, res) => {
+
     try {
-        const reservations = await Reservation.find({}).sort({createdAt: -1})
+        const reservations = await Reservation.find({}).sort({createdAt: -1}).limit(20)
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -126,4 +127,4 @@ const deleteReservation = async (req, res) => {
     res.status(200).json(`Reservation ${id} deleted.`)
 }
 
-module.exports = {getReservations, getReservationsArrivals, getReservationsDepartures, getReservationsCheckedin, getReservation, createReservation, updateReservation, deleteReservation}
+module.exports = {getLatestReservations, getReservationsArrivals, getReservationsDepartures, getReservationsCheckedin, getReservation, createReservation, updateReservation, deleteReservation}
