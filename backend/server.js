@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-const reservationsRoutes = require('./routes/reservationsRoutes')
+const reservationsRoutes = require('./routes/reservationRoutes')
 const app = express()
 
 //.env
@@ -28,7 +28,11 @@ const port = process.env.PORT || 5000
 // connect to db
 let dbConnectionString = process.env.DB_STRING
 
-mongoose.connect(dbConnectionString, {useUnifiedTopology: true})
+mongoose.connect(dbConnectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    uaeFindAndModify: false
+})
 .then(async client => {
         app.listen(port, () => console.log(`Server running on port ${port}`))
      })
