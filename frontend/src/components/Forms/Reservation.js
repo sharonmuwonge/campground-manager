@@ -14,7 +14,7 @@ const ReservationForm = () => {
 
         const response = await fetch('reservations', {
             method: 'POST',
-            body: JSON.stringify(workout),
+            body: JSON.stringify(reservation),
             headers: {
                 'Content-Type': 'application/json'
             }

@@ -2,7 +2,6 @@
 import ReservationsArrivalsList from "./Reservations/Arrivals"
 import ReservationsDeparturesList from "./Reservations/Departures"
 import ReservationsCheckedinList from "./Reservations/Checkedin"
-import CampsiteList from "./Campsites/CampsiteList"
 
 const Overview = () => {
     return (
