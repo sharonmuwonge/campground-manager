@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-const reservationsRoutes = require('./routes/reservationRoutes')
+const reservationRoutes = require('./routes/reservationRoutes')
+const userRoutes = require('./routes/userRoutes')
+const campsiteRoutes = require('./routes/campsiteRoutes')
 const app = express()
 
 //.env
@@ -19,8 +21,9 @@ app.use((req, res, next) => {
 })
 
 // Access to routes
-app.use('/reservations', reservationsRoutes)
+app.use('/reservations', reservationRoutes)
 app.use('/users', userRoutes)
+app.use('/campsites', campsiteRoutes)
 
 // port selection
 const port = process.env.PORT || 5000
@@ -30,8 +33,7 @@ let dbConnectionString = process.env.DB_STRING
 
 mongoose.connect(dbConnectionString, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    uaeFindAndModify: false
+    useUnifiedTopology: true
 })
 .then(async client => {
         app.listen(port, () => console.log(`Server running on port ${port}`))

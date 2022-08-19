@@ -1,8 +1,8 @@
+import CampsiteList from "./Campsites/CampsiteList"
+
 const Campsites = () => {
   return (
-    <div>
-      
-    </div>
+    <CampsiteList />
   )
 }
 

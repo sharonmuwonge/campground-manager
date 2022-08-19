@@ -17,13 +17,13 @@ const LatestReservations = () => {
             }
         }
 
-        fetchReservationsArrivals()
+        fetchLatestReservations()
     }, [])
 
     return(
         <ul id="arrivals" className='latestReservations'>
             {latestReservations && latestReservations.map((reservation) => (
-                <Link to={`/reservations/${reservation._id}`} className='nav-link'> 
+                <Link to={`/reservations/${reservation._id}`} className='reservation-link'> 
                     <li key={reservation._id}>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}</li>
                 </Link>
             ))}
