@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const reservationRoutes = require('./routes/reservationRoutes')
 const userRoutes = require('./routes/userRoutes')
 const campsiteRoutes = require('./routes/campsiteRoutes')
+const facilityRoutes = require('./routes/facilityRoutes')
 const app = express()
 
 //.env
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use('/reservations', reservationRoutes)
 app.use('/users', userRoutes)
 app.use('/campsites', campsiteRoutes)
+app.use('/facilities', facilityRoutes)
 
 // port selection
 const port = process.env.PORT || 5000

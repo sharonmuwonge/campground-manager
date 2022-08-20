@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Add from "../Buttons/Add"
 
-const Facility = () => {
+const FacilityForm = () => {
     const [facilityID, setFacilityID] = useState('')
     const [facilityName, setFacilityName] = useState('')
     const [facilityDescription, setFacilityDescription] = useState('')
@@ -18,6 +18,7 @@ const Facility = () => {
     const [reservable, setReservable] = useState('')
     const [activity, setActivity] = useState('')
     const [media, setMedia] = useState('')
+    const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -36,11 +37,34 @@ const Facility = () => {
 
         if (!response.ok) {
             setError(json.error)
+            console.log(error)
+        }
+
+        if (response.ok) {
+            setFacilityID('')
+            setFacilityName('')
+            setFacilityDescription('')
+            setFacilityPhone('')
+            setFacilityURL('')
+            setFacilityLongitude('')
+            setFacilityLatitude('')
+            setFacilityStreetAddress('')
+            setCity('')
+            setPostalCode('')
+            setStateCode('')
+            setCountryCode('')
+            setStayLimit('')
+            setReservable('')
+            setActivity('')
+            setMedia('')
+
+            setError(null)
+            console.log('New facility added', json)
         }
     }
 
     return (
-        <form className="create">
+        <form className="create" onSubmit={handleSubmit}>
             <h2>Add new facility</h2>
 
             <label>Facility ID:</label>
@@ -91,10 +115,9 @@ const Facility = () => {
             <label>Media:</label>
             <input type="file" onChange={(e) => setMedia(e.target.value)} value={media} />
 
-            {/* Replace button with component? */}
             < Add />
         </form>
     )
 }
 
-export default Facility
+export default FacilityForm

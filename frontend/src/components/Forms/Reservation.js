@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Add from "../Buttons/Add"
 
 const ReservationForm = () => {
     const [arriveDate, setArriveDate] = useState('')
@@ -6,6 +7,7 @@ const ReservationForm = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [checkedin, setCheckedin] = useState('')
+    const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,10 +27,21 @@ const ReservationForm = () => {
         if (!response.ok) {
             setError(json.error)
         }
+
+        if (response.ok) {
+            setArriveDate('')
+            setDepartDate('')
+            setFirstName('')
+            setLastName('')
+            setCheckedin('')
+            
+            setError(null)
+            console.log('New reservation added', json)
+        }
     }
 
     return (
-        <form className="create">
+        <form className="create" onSubmit={handleSubmit}>
             <h2>Add new reservation</h2>
 
             <label>First name:</label>
@@ -46,8 +59,11 @@ const ReservationForm = () => {
             <label>Checked in:</label>
             <input type="boolean" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
 
-            {/* Replace button with component? */}
-            <button>Add reservation</button>
+            <Add/>
+
+            {error && <p className="error">{error}</p>}
         </form>
     )
 }
+
+export default ReservationForm

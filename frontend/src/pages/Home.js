@@ -1,10 +1,12 @@
 import Overview from '../components/Overview.js'
 
-
 const Home = () => {
   return (
     <div>
-      <Overview />
+        <header>
+            <h1>Daily overview</h1>
+        </header>
+        <Overview />
     </div>
   )
 }

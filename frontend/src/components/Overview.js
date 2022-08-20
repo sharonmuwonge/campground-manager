@@ -6,9 +6,6 @@ import ReservationsCheckedinList from "./Reservations/Checkedin"
 const Overview = () => {
     return (
     <section>
-        <header>
-            <h1>Daily overview</h1>
-        </header>
         <form action="">
                 <label htmlFor="selectedDate">Date:</label>
                 {/* <Input size='sm' type="date" name="selectedDate" id="selectedDate"/> */}

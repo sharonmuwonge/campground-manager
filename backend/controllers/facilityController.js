@@ -1,4 +1,4 @@
-const Facility = require('../models/campsiteModel')
+const Facility = require('../models/facilityModel')
 const mongoose = require('mongoose')
 
 //Get all facilities, GET /facilities, private
@@ -33,12 +33,12 @@ const getFacility = async (req, res) => {
 
 //Create single facility, POST /facility/:id, private
 const createFacility = async (req, res) => {
-    // const {schema elements} = req.body
+    const {facilityID, facilityName, facilityDescription, facilityPhone, facilityURL, facilityLongitude, facilityLatitude, facilityStreetAddress, city, postalCode, stateCode, countryCode, stayLimit, reservable, activity, media} = req.body
 
     // check if request is made by admin. If not, access not granted.
 
     try {
-        // const facility = await Facility.create({schema elements})
+        const facility = await Facility.create({facilityID, facilityName, facilityDescription, facilityPhone, facilityURL, facilityLongitude, facilityLatitude, facilityStreetAddress, city, postalCode, stateCode, countryCode, stayLimit, reservable, activity, media})
         res.status(200).json(facility)
     } catch (error) {
         res.status(400).json({error: error.message})

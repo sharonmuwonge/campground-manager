@@ -56,8 +56,8 @@ const facilitySchema = new Schema({
         required: true
     },
     reservable: {
-        type: Boolean,
-        required: true
+        type: String,
+        required: false
     },
     activity: {
         type: Array,

@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const getLatestReservations = async (req, res) => {
 
     try {
-        const reservations = await Reservation.find({}).sort({createdAt: -1}).limit(20)
+        const reservations = await Reservation.find({}).sort({createdAt: 1}).limit(20)
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
