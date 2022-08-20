@@ -8,7 +8,6 @@ const Home = () => {
             <h1>Daily overview</h1>
         </header>
         <Overview />
-        <Campsite />
     </div>
   )
 }
