@@ -1,5 +1,4 @@
 import Overview from '../components/Overview.js'
-import Campsite from '../components/Forms/Campsite'
 
 const Home = () => {
   return (

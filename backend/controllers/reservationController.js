@@ -82,9 +82,9 @@ const getReservation = async (req, res) => {
 
 //Create single reservation, POST /reservations/:id, private
 const createReservation = async (req, res) => {
-    const {arriveDate, departDate, firstName, lastName} = req.body
+    const {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin} = req.body
     try {
-        const reservation = await Reservation.create({arriveDate, departDate, firstName, lastName})
+        const reservation = await Reservation.create({firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin})
         res.status(200).json(reservation)
     } catch (error) {
         res.status(400).json({error: error.message})
