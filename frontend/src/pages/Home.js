@@ -1,4 +1,5 @@
 import Overview from '../components/Overview.js'
+import Campsite from '../components/Forms/Campsite'
 
 const Home = () => {
   return (
@@ -7,6 +8,7 @@ const Home = () => {
             <h1>Daily overview</h1>
         </header>
         <Overview />
+        <Campsite />
     </div>
   )
 }

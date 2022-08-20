@@ -33,12 +33,12 @@ const getCampsite = async (req, res) => {
 
 //Create single campsite, POST /campsite/:id, private
 const createCampsite = async (req, res) => {
-    // const {schema elements} = req.body
+    const {campsiteID, campsiteName, facilityID, facilityName, campsiteType, facilityLongitude, facilityLatitude, uses, onLoop, permittedEquipment, amenities, feePerNight, reservationFee, maxVehicles, vehicleFee, maxPersons, tentsAllowed, maxTents, petsAllowed, maxPets, petFee, media} = req.body
 
     // check if request is made by admin. If not, access not granted.
 
     try {
-        // const campsite = await Campsite.create({schema elements})
+        const campsite = await Campsite.create({campsiteID, campsiteName, facilityID, facilityName, campsiteType, facilityLongitude, facilityLatitude, uses, onLoop, permittedEquipment, amenities, feePerNight, reservationFee, maxVehicles, vehicleFee, maxPersons, tentsAllowed, maxTents, petsAllowed, maxPets, petFee, media})
         res.status(200).json(campsite)
     } catch (error) {
         res.status(400).json({error: error.message})

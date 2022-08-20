@@ -68,7 +68,7 @@ const campsiteSchema = new Schema({
         required: true
     },
     tentsAllowed: {
-        type: Boolean,
+        type: String,
         required: true
     },
     maxTents: {
@@ -76,7 +76,7 @@ const campsiteSchema = new Schema({
         required: true
     },
     petsAllowed: {
-        type: Boolean,
+        type: String,
         required: true
     },
     maxPets: {
@@ -89,7 +89,7 @@ const campsiteSchema = new Schema({
     },
     media: {
         type: Array,
-        required: true
+        required: false
     }
 }, {timestamps: true})
 
