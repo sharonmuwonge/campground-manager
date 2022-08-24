@@ -5,9 +5,10 @@ const Reservations = () => {
   return (
     <div>
       <header>
-            <h1>Daily overview</h1>
+            <h1>Daily Overview</h1>
       </header>
       < ReservationForm />
+      <h2>Latest Reservations</h2>
       < LatestReservations />
     </div>
   )

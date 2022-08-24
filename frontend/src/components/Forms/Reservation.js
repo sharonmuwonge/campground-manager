@@ -1,7 +1,11 @@
 import { useState } from "react"
+import { useReservationsContext } from "../../hooks/useReservationsContext"
 import Add from "../Buttons/Add"
 
 const ReservationForm = () => {
+
+    const { dispatch } = useReservationsContext()
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [arriveDate, setArriveDate] = useState('')
@@ -63,6 +67,7 @@ const ReservationForm = () => {
             setCheckedin('')
             setError(null)
             console.log('New reservation added', json)
+            dispatch({type: 'CREATE_RESERVATION', payload: json})
         }
     }
 
