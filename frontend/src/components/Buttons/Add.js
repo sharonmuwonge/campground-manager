@@ -2,7 +2,7 @@ import React from 'react'
 
 function Add(props) {
   return (
-    <button>Add{ props.type && ` ${props.type}`}</button>
+    <button>Add{ props.type && ` ${props.type}` }</button>
   )
 }
 
