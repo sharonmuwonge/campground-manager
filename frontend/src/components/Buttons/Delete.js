@@ -2,7 +2,7 @@ import React from 'react'
 
 function Delete(props) {
   return (
-    <button>Delete{props.type}</button>
+    <button>Delete{ props.type && ` ${props.type}` }</button>
   )
 }
 
