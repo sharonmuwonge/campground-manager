@@ -4,6 +4,8 @@ import Add from "../Buttons/Add"
 
 const ReservationForm = () => {
 
+    const type = 'reservation'
+
     const { dispatch } = useReservationsContext()
 
     const [firstName, setFirstName] = useState('')
@@ -129,7 +131,7 @@ const ReservationForm = () => {
             <label>Checked In:</label>
             <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
 
-            <Add/>
+            < Add type={ type } />
         </form>
     )
 }
