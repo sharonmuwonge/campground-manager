@@ -6,6 +6,7 @@ const ReservationsArrivalsList = ({date}) => {
     const [reservationsArrivals, setReservationsArrivals] = useState(null)
 
     useEffect(() => {
+
         const fetchReservationsArrivals = async () => {
 
             const response = await fetch(`/reservations/${date}/arrivals`)
@@ -13,7 +14,6 @@ const ReservationsArrivalsList = ({date}) => {
     
             if (response.ok) {
                 setReservationsArrivals(json)
-                console.log(reservationsArrivals)
             }
         }
 
@@ -22,11 +22,13 @@ const ReservationsArrivalsList = ({date}) => {
 
     return(
         <ul id="arrivals" className='reservations'>
-            {reservationsArrivals.length > 0 ? reservationsArrivals.map((reservation) => (
+            {reservationsArrivals && reservationsArrivals.length > 0 ?
+            reservationsArrivals.map((reservation) => (
                 <Link to={`/reservations/${reservation._id}`} className='reservation-link' key={reservation._id}> 
                     <li>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}</li>
                 </Link>
-            )) : 'No arrivals' }
+            ))
+            : <p>No arrivals.</p>}
         </ul>
     )
 

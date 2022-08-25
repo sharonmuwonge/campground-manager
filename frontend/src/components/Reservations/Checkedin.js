@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 
-const ReservationsCheckedinList = () => {
+const ReservationsCheckedinList = ({date}) => {
 
     const [reservationsCheckedin, setReservationsCheckedin] = useState(null)
 
@@ -9,7 +9,7 @@ const ReservationsCheckedinList = () => {
 
         const fetchReservationsCheckedin = async () => {
 
-            const response = await fetch('/reservations/2022-08-15/checkedin')
+            const response = await fetch(`/reservations/${date}/checkedin`)
             const json = await response.json()
 
             if (response.ok) {
@@ -18,16 +18,17 @@ const ReservationsCheckedinList = () => {
         }
 
         fetchReservationsCheckedin()
-    }, [])
+    }, [date])
 
     return(
         <ul id="arrivals" className='reservations'>
-            {/* fetch reservations from database and create link + li's */}
-            {reservationsCheckedin && reservationsCheckedin.map((reservation) => (
+            {reservationsCheckedin && reservationsCheckedin.length > 0 ?
+            reservationsCheckedin.map((reservation) => (
                 <Link to={`/reservations/${reservation._id}`} className='reservation-link' key={reservation._id}> 
                     <li>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}</li>
                 </Link>
-            ))}
+            ))
+            : <p>No checked in guests.</p>}
         </ul>
     )
 

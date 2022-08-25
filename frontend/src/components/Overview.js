@@ -3,7 +3,7 @@ import ReservationsArrivalsList from "./Reservations/Arrivals"
 import ReservationsDeparturesList from "./Reservations/Departures"
 import ReservationsCheckedinList from "./Reservations/Checkedin"
 import SelectedDate from "./Forms/Date"
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const Overview = () => {
 
@@ -23,11 +23,11 @@ const Overview = () => {
                 </li>
                 <li>
                     <h3>Departures</h3>
-                    < ReservationsDeparturesList />
+                    < ReservationsDeparturesList date={date}/>
                 </li>
                 <li id="checkedInInfo">
                     <h3>Checked in</h3>
-                    < ReservationsCheckedinList />
+                    < ReservationsCheckedinList date={date}/>
                 </li>
             </ul>
     </section>
