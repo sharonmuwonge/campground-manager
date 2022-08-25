@@ -2,7 +2,7 @@ import React from 'react'
 
 function Cancel(props) {
   return (
-    <button>Cancel{props.type}</button>
+    <button>Cancel{ props.type && ` ${props.type}` }</button>
   )
 }
 

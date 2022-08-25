@@ -2,7 +2,7 @@ import React from 'react'
 
 function Edit(props) {
   return (
-    <button>Edit{props.type}</button>
+    <button>Edit{ props.type && ` ${props.type}` }</button>
   )
 }
 
