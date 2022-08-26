@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
-import Add from "../Buttons/Add"
+// import Add from "../Buttons/Add"
+// Add buttons on the pages
 
 const ReservationForm = () => {
 
@@ -131,7 +132,7 @@ const ReservationForm = () => {
             <label>Checked In:</label>
             <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
 
-            < Add type={ type } />
+            {/* < Add type={ type } /> */}
         </form>
     )
 }

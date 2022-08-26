@@ -27,8 +27,7 @@ const ReservationsArrivalsList = ({date}) => {
                 <Link to={`/reservations/${reservation._id}`} className='reservation-link' key={reservation._id}> 
                     <li>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}</li>
                 </Link>
-            ))
-            : <p>No arrivals.</p>}
+            )) : <p>No arrivals.</p>}
         </ul>
     )
 
