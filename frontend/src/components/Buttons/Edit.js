@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Edit(props) {
+function Edit({type, editClick}) {
   return (
-    <button>Edit{ props.type && ` ${props.type}` }</button>
+    <button onClick={editClick}>Edit{ type && ` ${type}` }</button>
   )
 }
 

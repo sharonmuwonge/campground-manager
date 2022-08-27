@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import ReservationForm from "../components/Forms/Reservation"
 import SingleReservation from "../components/Reservations/SingleReservation"
+import Edit from "../components/Buttons/Edit"
+import Cancel from "../components/Buttons/Cancel"
 
 const Reservation = () => {
 
@@ -12,6 +14,7 @@ const Reservation = () => {
   const id = window.location.pathname.slice(14)
 
   const [reservationInfo, setReservationInfo] = useState(null)
+  const [toggleEdit, setToggleEdit] = useState(true)
     
   useEffect(() => {
   
@@ -22,17 +25,21 @@ const Reservation = () => {
   
           if (response.ok) {
               setReservationInfo(json)
-              console.log(json)
           }
       }
   
       fetchReservationInfo()
   }, [id])
 
+  function handleClickEdit(event) {
+    setToggleEdit(current => !current)
+  }
+
   return (
     <div>
-      < SingleReservation reservationInfo={reservationInfo} id={id} />     
-      < ReservationForm />
+      < Edit editClick={handleClickEdit}  />
+      < Cancel />
+      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm />}
     </div>
   )
 }
