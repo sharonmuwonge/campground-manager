@@ -6,90 +6,59 @@ const SingleReservation = ({reservationInfo, id}) => {
     return(
         <div id="singleReservation" className='reservation'>
             <span>First name:</span>
-    
             <p>{reservationInfo && reservationInfo.firstName}</p>
 
-            {/* <span>Last name:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName} />
+            <span>Last name:</span>
+            <p>{reservationInfo && reservationInfo.lastName}</p>
             
             <span>Arrival date:</span>
-            <p>
-            
-            </p><input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate} />
+            <p>{reservationInfo && reservationInfo.arriveDate}</p>
 
             <span>Departure date:</span>
-            <p>
-            
-            </p><input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate} />
+            <p>{reservationInfo && reservationInfo.departDate}</p>
 
             <span>Campsite:</span>
-            <p>
-            
-            </p><input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite} />
+            <p>{reservationInfo && reservationInfo.campsite}</p>
 
             <span>People:</span>
-            <p>
-            
-            </p><input type="number" onChange={(e) => setPeople(e.target.value)} value={people} />
+            <p>{reservationInfo && reservationInfo.people}</p>
 
             <span>Pets:</span>
-            <p>
-            
-            </p><input type="Number" onChange={(e) => setPets(e.target.value)} value={pets} />
-            
+            <p>{reservationInfo && reservationInfo.pets}</p>
+
             <span>License Plate:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate} />
+            <p>{reservationInfo && reservationInfo.licensePlate}</p>
 
             <span>Vehicles:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setVehicles(e.target.value)} value={vehicles} />
-            
+            <p>{reservationInfo && reservationInfo.vehicles}</p>
+
             <span>Street Address:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress} />
+            <p>{reservationInfo && reservationInfo.streetAddress}</p>
 
             <span>City:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setCity(e.target.value)} value={city} />
+            <p>{reservationInfo && reservationInfo.city}</p>
 
             <span>Postal Code:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode} />
+            <p>{reservationInfo && reservationInfo.postalCode}</p>
 
             <span>State Code:</span>
-            <p>
-            
-            </p><input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode} />
+            <p>{reservationInfo && reservationInfo.stateCode}</p>
 
             <span>Country Code:</span>
-            <p>
-            
-            </p><input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode} />
+            <p>{reservationInfo && reservationInfo.countryCode}</p>
 
             <span>Customer Phone:</span>
-            <p>
-            
-            </p><input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone} />
+            <p>{reservationInfo && reservationInfo.customerPhone}</p>
 
             <span>Customer Email:</span>
-            <p>
-                </p><input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail} />
-            
+            <p>{reservationInfo && reservationInfo.customerEmail}</p>
+
             <span>Paid in Full:</span>
-            <p>
-                </p><input type="text" onChange={(e) => setPaidInFull(e.target.value)} value={paidInFull} />
+            <p>{reservationInfo && reservationInfo.paidInFull}</p>
 
             <span>Checked In:</span>
-            <p>
-                </p><p type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} /> */}
+            <p>{reservationInfo && reservationInfo.checkedin}</p>
+
         </div>
     )
 

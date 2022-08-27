@@ -31,8 +31,8 @@ const Reservation = () => {
 
   return (
     <div>
-     < SingleReservation reservationInfo={reservationInfo} id={id} />
-     < ReservationForm />
+      < SingleReservation reservationInfo={reservationInfo} id={id} />     
+      < ReservationForm />
     </div>
   )
 }
