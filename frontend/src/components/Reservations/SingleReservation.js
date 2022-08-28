@@ -1,5 +1,7 @@
 const SingleReservation = ({reservationInfo}) => {
 
+    
+
     return(
         <div id="singleReservation" className='reservation'>
             <span>First name:</span>

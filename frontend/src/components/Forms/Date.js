@@ -2,13 +2,14 @@ import { useState } from 'react'
 
 const SelectedDate = ({dateChange}) => {
 
-    const todayISO = () => {
-        let today = new Date()
-        return today.toISOString().slice(0,10)
+    const getToday = () => {
+      return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,10)
     }
+
+    console.log(getToday)
     
 
-    const [date] = useState(todayISO());
+    const [date] = useState(getToday());
 
     return (
         <form action="">

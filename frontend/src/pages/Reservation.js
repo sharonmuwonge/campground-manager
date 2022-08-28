@@ -15,6 +15,7 @@ const Reservation = () => {
 
   const [reservationInfo, setReservationInfo] = useState(null)
   const [toggleEdit, setToggleEdit] = useState(true)
+  const [edit] = useState(true)
     
   useEffect(() => {
   
@@ -39,7 +40,7 @@ const Reservation = () => {
     <div>
       < Edit editClick={handleClickEdit}  />
       < Cancel />
-      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm />}
+      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm reservationInfo={reservationInfo} edit={edit} /> }
     </div>
   )
 }

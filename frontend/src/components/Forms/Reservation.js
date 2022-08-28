@@ -1,32 +1,30 @@
 import { useState } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
-// import Add from "../Buttons/Add"
-// Add buttons on the pages
+import Add from "../Buttons/Add"
+import Save from "../Buttons/Save"
 
-const ReservationForm = () => {
-
-    const type = 'reservation'
+const ReservationForm = ({reservationInfo, edit, create}) => {
 
     const { dispatch } = useReservationsContext()
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [arriveDate, setArriveDate] = useState('')
-    const [departDate, setDepartDate] = useState('')
-    const [campsite, setCampsite] = useState('')
-    const [people, setPeople] = useState('')
-    const [pets, setPets] = useState('')
-    const [licensePlate, setLicensePlate] = useState('')
-    const [vehicles, setVehicles] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [postalCode, setPostalCode] = useState('')
-    const [stateCode, setStateCode] = useState('')
-    const [countryCode, setCountryCode] = useState('')
-    const [customerPhone, setCustomerPhone] = useState('')
-    const [customerEmail, setCustomerEmail] = useState('')
-    const [paidInFull, setPaidInFull] = useState('')
-    const [checkedin, setCheckedin] = useState('')
+    const [firstName, setFirstName] = useState(reservationInfo && reservationInfo.firstName)
+    const [lastName, setLastName] = useState(reservationInfo && reservationInfo.lastName)
+    const [arriveDate, setArriveDate] = useState(reservationInfo && reservationInfo.arriveDate.slice(0,10))
+    const [departDate, setDepartDate] = useState(reservationInfo && reservationInfo.departDate.slice(0,10))
+    const [campsite, setCampsite] = useState(reservationInfo && reservationInfo.campsite)
+    const [people, setPeople] = useState(reservationInfo && reservationInfo.people)
+    const [pets, setPets] = useState(reservationInfo && reservationInfo.pets)
+    const [licensePlate, setLicensePlate] = useState(reservationInfo && reservationInfo.licensePlate)
+    const [vehicles, setVehicles] = useState(reservationInfo && reservationInfo.vehicles)
+    const [streetAddress, setStreetAddress] = useState(reservationInfo && reservationInfo.streetAddress)
+    const [city, setCity] = useState(reservationInfo && reservationInfo.city)
+    const [postalCode, setPostalCode] = useState(reservationInfo && reservationInfo.postalCode)
+    const [stateCode, setStateCode] = useState(reservationInfo && reservationInfo.stateCode)
+    const [countryCode, setCountryCode] = useState(reservationInfo && reservationInfo.countryCode)
+    const [customerPhone, setCustomerPhone] = useState(reservationInfo && reservationInfo.customerPhone)
+    const [customerEmail, setCustomerEmail] = useState(reservationInfo && reservationInfo.customerEmail)
+    const [paidInFull, setPaidInFull] = useState(reservationInfo && reservationInfo.paidInFull)
+    const [checkedin, setCheckedin] = useState(reservationInfo && reservationInfo.checkedin)
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
@@ -34,49 +32,95 @@ const ReservationForm = () => {
 
         const reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
 
-        const response = await fetch('/reservations', {
-            method: 'POST',
-            body: JSON.stringify(reservation),
-            headers: {
-                'Content-Type': 'application/json'
+        if (edit) {
+            const response = await fetch(`/reservations/${reservationInfo._id}`, {
+                method: 'PUT',
+                body: JSON.stringify(reservation),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+    
+            const json = await response.json()
+    
+            if (!response.ok) {
+                setError(json.error)
+                console.log(error)
             }
-        })
+    
+            if (response.ok) {
+                setFirstName(reservationInfo && reservationInfo.firstName)
+                setLastName(reservationInfo && reservationInfo.lastName)
+                setArriveDate(reservationInfo && reservationInfo.arriveDate.slice(0,10))
+                setDepartDate(reservationInfo && reservationInfo.departDate.slice(0,10))
+                setCampsite(reservationInfo && reservationInfo.campsite)
+                setPeople(reservationInfo && reservationInfo.people)
+                setPets(reservationInfo && reservationInfo.pets)
+                setLicensePlate(reservationInfo && reservationInfo.licensePlate)
+                setVehicles(reservationInfo && reservationInfo.vehicles)
+                setStreetAddress(reservationInfo && reservationInfo.streetAddress)
+                setCity(reservationInfo && reservationInfo.city)
+                setPostalCode(reservationInfo && reservationInfo.postalCode)
+                setStateCode(reservationInfo && reservationInfo.stateCode)
+                setCountryCode(reservationInfo && reservationInfo.countryCode)
+                setCustomerPhone(reservationInfo && reservationInfo.customerPhone)
+                setCustomerEmail(reservationInfo && reservationInfo.customerEmail)
+                setPaidInFull(reservationInfo && reservationInfo.paidInFull)
+                setCheckedin(reservationInfo && reservationInfo.checkedin)
+                setError(null)
+                console.log('Reservation updated', json)
+                dispatch({type: 'SET_RESERVATION', payload: json})
+            }
 
-        const json = await response.json()
-
-        if (!response.ok) {
-            setError(json.error)
-            console.log(error)
+        if (create) {
+            const response = await fetch('/reservations', {
+                method: 'POST',
+                body: JSON.stringify(reservation),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+    
+            const json = await response.json()
+    
+            if (!response.ok) {
+                setError(json.error)
+                console.log(error)
+            }
+    
+            if (response.ok) {
+                setFirstName('')
+                setLastName('')
+                setArriveDate('')
+                setDepartDate('')
+                setCampsite('')
+                setPeople('')
+                setPets('')
+                setLicensePlate('')
+                setVehicles('')
+                setStreetAddress('')
+                setCity('')
+                setPostalCode('')
+                setStateCode('')
+                setCountryCode('')
+                setCustomerPhone('')
+                setCustomerEmail('')
+                setPaidInFull('')
+                setCheckedin('')
+                setError(null)
+                console.log('New reservation added', json)
+                dispatch({type: 'CREATE_RESERVATION', payload: json})
+            }
         }
 
-        if (response.ok) {
-            setFirstName('')
-            setLastName('')
-            setArriveDate('')
-            setDepartDate('')
-            setCampsite('')
-            setPeople('')
-            setPets('')
-            setLicensePlate('')
-            setVehicles('')
-            setStreetAddress('')
-            setCity('')
-            setPostalCode('')
-            setStateCode('')
-            setCountryCode('')
-            setCustomerPhone('')
-            setCustomerEmail('')
-            setPaidInFull('')
-            setCheckedin('')
-            setError(null)
-            console.log('New reservation added', json)
-            dispatch({type: 'CREATE_RESERVATION', payload: json})
-        }
     }
+}
 
     return (
         <form className="create" onSubmit={handleSubmit}>
-            <h2>Add new reservation</h2>
+
+            {edit && <h2>Edit reservation</h2>}
+            {create && <h2>Add new reservation</h2>}
 
             <label>First name:</label>
             <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
@@ -132,9 +176,10 @@ const ReservationForm = () => {
             <label>Checked In:</label>
             <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
 
-            {/* < Add type={ type } /> */}
+            {edit ? < Save /> : < Add />}
         </form>
     )
 }
+
 
 export default ReservationForm
