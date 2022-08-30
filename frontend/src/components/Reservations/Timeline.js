@@ -11,8 +11,6 @@ const ReservationTimeline = ({reservations}) => {
         return result
     }
 
-promise.then(result => console.log(handleReservations())).catch( err => console.log(err));
-
 const groups = [{ id: 1, title: 'Site 1' }, { id: 2, title: 'Site 2' }, { id: 6, title: 'Site 6' }]
 // replace with campsites
 
