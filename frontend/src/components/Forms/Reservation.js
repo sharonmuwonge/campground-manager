@@ -30,7 +30,6 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log('submitted')
         const reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
 
         if (edit) {
