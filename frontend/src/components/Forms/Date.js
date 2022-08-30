@@ -6,9 +6,6 @@ const SelectedDate = ({dateChange}) => {
       return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,10)
     }
 
-    console.log(getToday)
-    
-
     const [date] = useState(getToday());
 
     return (

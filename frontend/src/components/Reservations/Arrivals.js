@@ -21,14 +21,17 @@ const ReservationsArrivalsList = ({date}) => {
     }, [date])
 
     return(
-        <ul id="arrivals" className='reservations'>
+        <>
             {reservationsArrivals && reservationsArrivals.length > 0 ?
-            reservationsArrivals.map((reservation) => (
-                <Link to={`/reservations/${reservation._id}`} className='reservation-link' key={reservation._id}> 
-                    <li>{reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}</li>
-                </Link>
-            )) : <p>No arrivals.</p>}
-        </ul>
+                <ul id="arrivals" className='reservations'>
+                {reservationsArrivals.map((reservation) => (
+                    <li className='reservation' key={reservation._id}><Link to={`/reservations/${reservation._id}`}> 
+                    {reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}
+                    </Link></li>
+                )) }
+                </ul>
+            : <p>No arrivals.</p>}
+        </>
     )
 
 }

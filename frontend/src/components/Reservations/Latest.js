@@ -6,29 +6,35 @@ const LatestReservations = () => {
 
     const {reservations, dispatch} = useReservationsContext()
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const fetchLatestReservations = async () => {
+    //     const fetchLatestReservations = async () => {
 
-            const response = await fetch('/reservations/latest')
-            const json = await response.json()
+    //         const response = await fetch('/reservations/latest')
+    //         const json = await response.json()
 
-            if (response.ok) {
-                dispatch({type: 'SET_RESERVATIONS', payload: json})
-            }
-        }
+    //         if (response.ok) {
+    //             dispatch({type: 'SET_RESERVATIONS', payload: json})
+    //         }
+    //     }
 
-        fetchLatestReservations()
-    }, [])
+    //     fetchLatestReservations()
+
+    //     console.log(reservations)
+    // }, [])
 
     return(
-        <ul id="arrivals" className='latestReservations'>
-            {reservations && reservations.map((reservation) => (
-                <Link to={`/reservations/${reservation._id}`} className='reservation-link' key={reservation._id}> 
-                    <li>{reservation.createdAt} | {reservation.firstName} {reservation.lastName} | {reservation.arriveDate/*.slice(0,10)*/} - {reservation.departDate/*.slice(0,10)*/}</li>
-                </Link>
-            ))}
-        </ul>
+        <>
+            {reservations && reservations.length > 0 ? 
+                <ul id="latest" className='reservations'>
+                {reservations.map((reservation) => (
+                    <li className='reservationInfo' key={reservation._id}><Link to={`/reservations/${reservation._id}`}> 
+                    {reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}
+                    </Link></li>
+                )) }
+                </ul>
+            : <p>No reservations.</p>}
+        </>
     )
 
 }
