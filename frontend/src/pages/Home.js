@@ -1,6 +1,7 @@
-import Overview from '../components/Overview.js'
+import Overview from "../components/Overview"
 
 const Home = () => {
+
   return (
     <div>
         <header>

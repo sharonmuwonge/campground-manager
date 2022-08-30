@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Add(props) {
+function Add({formType}) {
   return (
-    <button>Add{ props.type && ` ${props.type}` }</button>
-  )
+    <button type={'submit'} form={'reservationForm'} >Add{ formType && ` ${formType}` }</button>
+   )
 }
 
 export default Add

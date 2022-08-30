@@ -12,7 +12,7 @@ const {getLatestReservations,
     } = require('../controllers/reservationController')
 
 // Get all reservations
-router.get('/latest', getLatestReservations)
+router.get('/', getLatestReservations)
 
 // Get all reservations
 router.get('/:date/arrivals', getReservationsArrivals)

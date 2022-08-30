@@ -5,7 +5,7 @@ import Save from "../Buttons/Save"
 
 const ReservationForm = ({reservationInfo, edit, create}) => {
 
-    const { dispatch } = useReservationsContext()
+    const {dispatch} = useReservationsContext()
 
     const [firstName, setFirstName] = useState(reservationInfo && reservationInfo.firstName)
     const [lastName, setLastName] = useState(reservationInfo && reservationInfo.lastName)
@@ -30,6 +30,7 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        console.log('submitted')
         const reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
 
         if (edit) {
@@ -69,10 +70,14 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
                 setCheckedin(reservationInfo && reservationInfo.checkedin)
                 setError(null)
                 console.log('Reservation updated', json)
-                dispatch({type: 'SET_RESERVATION', payload: json})
+                dispatch({type: 'SET_RESERVATIONS', payload: json})
             }
 
+        }
+
         if (create) {
+
+            console.log('hi')
             const response = await fetch('/reservations', {
                 method: 'POST',
                 body: JSON.stringify(reservation),
@@ -112,71 +117,69 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
                 dispatch({type: 'CREATE_RESERVATION', payload: json})
             }
         }
-
     }
-}
 
     return (
-        <form className="create" onSubmit={handleSubmit}>
+        <form id='reservationForm' onSubmit={handleSubmit}>
 
             {edit && <h2>Edit reservation</h2>}
             {create && <h2>Add new reservation</h2>}
 
             <label>First name:</label>
-            <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} />
+            <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName || ''} required />
 
             <label>Last name:</label>
-            <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName} />
+            <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} required />
             
             <label>Arrival date:</label>
-            <input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate} />
+            <input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} required />
 
             <label>Departure date:</label>
-            <input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate} />
+            <input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} required />
 
             <label>Campsite:</label>
-            <input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite} />
+            <input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} required />
 
             <label>People:</label>
-            <input type="number" onChange={(e) => setPeople(e.target.value)} value={people} />
+            <input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} required />
 
             <label>Pets:</label>
-            <input type="Number" onChange={(e) => setPets(e.target.value)} value={pets} />
+            <input type="Number" onChange={(e) => setPets(e.target.value)} value={pets || ''} required />
             
             <label>License Plate:</label>
-            <input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate} />
+            <input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || ''} required />
 
             <label>Vehicles:</label>
-            <input type="text" onChange={(e) => setVehicles(e.target.value)} value={vehicles} />
+            <input type="text" onChange={(e) => setVehicles(e.target.value)} value={vehicles || ''} required />
             
             <label>Street Address:</label>
-            <input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress} />
+            <input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} required />
 
             <label>City:</label>
-            <input type="text" onChange={(e) => setCity(e.target.value)} value={city} />
+            <input type="text" onChange={(e) => setCity(e.target.value)} value={city || ''} required />
 
             <label>Postal Code:</label>
-            <input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode} />
+            <input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} required />
 
             <label>State Code:</label>
-            <input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode} />
+            <input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} required />
 
             <label>Country Code:</label>
-            <input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode} />
+            <input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} required />
 
             <label>Customer Phone:</label>
-            <input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone} />
+            <input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone || ''} required />
 
             <label>Customer Email:</label>
-            <input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail} />
+            <input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} required />
             
             <label>Paid in Full:</label>
-            <input type="text" onChange={(e) => setPaidInFull(e.target.value)} value={paidInFull} />
+            <input type="text" onChange={(e) => setPaidInFull(e.target.value)} value={paidInFull || ''} required />
 
             <label>Checked In:</label>
-            <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin} />
+            <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin || ''} required />
 
-            {edit ? < Save /> : < Add />}
+            {edit ? < Save /> : < Add formType={'reservation'} />}
         </form>
     )
 }
