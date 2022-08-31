@@ -15,7 +15,10 @@ const ReservationTimeline = () => {
   useEffect(() => {
 
         if (reservations && reservations.length > 0) { 
-            setItems(reservations.map( reservation => ({id:reservation._id, title:`${reservation.firstName} ${reservation.lastName}`, start_time:moment(reservation.arriveDate), end_time:moment(reservation.departDate), group: reservation.campsite})))
+            setItems(reservations.map( reservation => ({id:reservation._id, title:`${reservation.firstName} ${reservation.lastName}`, start_time:moment(reservation.arriveDate), end_time:moment(reservation.departDate), group: reservation.campsite,  
+            itemProps: {
+              onDoubleClick: (e) => { return window.open(`/reservations/${reservation._id}`, '_self') },
+          }})))
           }
 
   }, [reservations, dispatch])
@@ -29,6 +32,7 @@ const ReservationTimeline = () => {
         defaultTimeStart={moment().add(-1, 'day')}
         defaultTimeEnd={moment().add(1, 'day')}
         timeSteps={timeSteps}
+        canMove={false}
         />
         : <p>Loading...</p>}
     </>
