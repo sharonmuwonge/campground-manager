@@ -3,6 +3,9 @@ import { createContext, useReducer } from 'react'
 export const ReservationsContext = createContext()
 
 export const reservationsReducer = (state, action) => {
+    
+    console.log(action)
+
     switch (action.type) {
         case 'SET_RESERVATIONS':
             return {

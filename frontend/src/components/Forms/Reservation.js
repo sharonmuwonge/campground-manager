@@ -2,8 +2,9 @@ import { useState } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
 import Add from "../Buttons/Add"
 import Save from "../Buttons/Save"
+import Cancel from "../Buttons/Cancel"
 
-const ReservationForm = ({reservationInfo, edit, create}) => {
+const ReservationForm = ({reservationInfo, edit, create, formSubmit, buttonClick}) => {
 
     const {dispatch} = useReservationsContext()
 
@@ -49,27 +50,28 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
             }
     
             if (response.ok) {
-                setFirstName(reservationInfo && reservationInfo.firstName)
-                setLastName(reservationInfo && reservationInfo.lastName)
-                setArriveDate(reservationInfo && reservationInfo.arriveDate.slice(0,10))
-                setDepartDate(reservationInfo && reservationInfo.departDate.slice(0,10))
-                setCampsite(reservationInfo && reservationInfo.campsite)
-                setPeople(reservationInfo && reservationInfo.people)
-                setPets(reservationInfo && reservationInfo.pets)
-                setLicensePlate(reservationInfo && reservationInfo.licensePlate)
-                setVehicles(reservationInfo && reservationInfo.vehicles)
-                setStreetAddress(reservationInfo && reservationInfo.streetAddress)
-                setCity(reservationInfo && reservationInfo.city)
-                setPostalCode(reservationInfo && reservationInfo.postalCode)
-                setStateCode(reservationInfo && reservationInfo.stateCode)
-                setCountryCode(reservationInfo && reservationInfo.countryCode)
-                setCustomerPhone(reservationInfo && reservationInfo.customerPhone)
-                setCustomerEmail(reservationInfo && reservationInfo.customerEmail)
-                setPaidInFull(reservationInfo && reservationInfo.paidInFull)
-                setCheckedin(reservationInfo && reservationInfo.checkedin)
+                setFirstName(reservation && reservation.firstName)
+                setLastName(reservation && reservation.lastName)
+                setArriveDate(reservation && reservation.arriveDate.slice(0,10))
+                setDepartDate(reservation && reservation.departDate.slice(0,10))
+                setCampsite(reservation && reservation.campsite)
+                setPeople(reservation && reservation.people)
+                setPets(reservation && reservation.pets)
+                setLicensePlate(reservation && reservation.licensePlate)
+                setVehicles(reservation && reservation.vehicles)
+                setStreetAddress(reservation && reservation.streetAddress)
+                setCity(reservation && reservation.city)
+                setPostalCode(reservation && reservation.postalCode)
+                setStateCode(reservation && reservation.stateCode)
+                setCountryCode(reservation && reservation.countryCode)
+                setCustomerPhone(reservation && reservation.customerPhone)
+                setCustomerEmail(reservation && reservation.customerEmail)
+                setPaidInFull(reservation && reservation.paidInFull)
+                setCheckedin(reservation && reservation.checkedin)
                 setError(null)
-                console.log('Reservation updated', json)
+                console.log('Reservation updated', json, reservation)
                 dispatch({type: 'SET_RESERVATIONS', payload: json})
+                formSubmit()
             }
 
         }
@@ -177,7 +179,8 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
             <label>Checked In:</label>
             <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin || ''} required />
 
-            {edit ? < Save /> : < Add formType={'reservation'} />}
+            {edit ? < Save formType={'reservation'} /> : < Add formType={'reservation'} />}
+            < Cancel cancelClick={buttonClick}/>
         </form>
     )
 }

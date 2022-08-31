@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Add({formType}) {
+function Add({formType, addClick}) {
   return (
-    <button type={'submit'} form={'reservationForm'} >Add{ formType && ` ${formType}` }</button>
+    <button type={'submit'} form={'reservationForm'} onClick={addClick}>Add{ formType && ` ${formType}` }</button>
    )
 }
 

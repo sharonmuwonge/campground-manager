@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Cancel(props) {
+function Cancel({formType, cancelClick}) {
   return (
-    <button>Cancel{ props.type && ` ${props.type}` }</button>
+    <button onClick={cancelClick}>Cancel{ formType && ` ${formType}` }</button>
   )
 }
 

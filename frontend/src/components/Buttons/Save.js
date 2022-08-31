@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Save(props) {
+function Save({formType}) {
   return (
-    <button>Save{ props.type && ` ${props.type}` }</button>
+    <button>Save{ formType && ` ${formType}` }</button>
   )
 }
 

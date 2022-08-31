@@ -106,7 +106,7 @@ const updateReservation = async (req, res) => {
         return res.status(404).json('Reservation not found')
     }
 
-    res.status(200).json(`Reservation ${id} updated: ${reservation}`)
+    res.status(200).json(`Reservation ${id} updated.`)
 }
 
 //Delete single reservation, DELETE /reservations/:id, private

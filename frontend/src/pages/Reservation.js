@@ -39,8 +39,8 @@ const Reservation = () => {
   return (
     <div>
       < Edit editClick={handleClickEdit}  />
-      < Cancel />
-      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm reservationInfo={reservationInfo} edit={edit} /> }
+      < Cancel formType={'reservation'} />
+      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm reservationInfo={reservationInfo} edit={edit} formSubmit={handleClickEdit} /> }
     </div>
   )
 }
