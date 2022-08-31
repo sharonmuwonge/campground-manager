@@ -3,32 +3,12 @@ import Timeline from 'react-calendar-timeline'
 import 'react-calendar-timeline/lib/Timeline.css'
 import moment from 'moment'
 import { useEffect, useState } from "react"
-import { useReservationsContext } from '../../hooks/useReservationsContext'
 
-const ReservationTimeline = () => {
+const ReservationTimeline = ({reservations}) => {
 
-  const {dispatch} = useReservationsContext()
-  const [reservations, setReservations] = useState([])
   const [items, setItems] = useState([])
   const groups = [{ id: 1, title: 'Site 1' }, { id: 2, title: 'Site 2' }, { id: 4, title: 'Site 4' }, { id: 6, title: 'Site 6' }] // replace with campsites
   const timeSteps = {day: 1}
-
-  useEffect(() => {
-
-      const fetchLatestReservations = async () => {
-
-          const response = await fetch('/reservations')
-          const json = await response.json()
-          if (response.ok) {
-              dispatch({type: 'SET_RESERVATIONS', payload: json})
-              setReservations(json)
-          }
-
-        } 
-
-      fetchLatestReservations()
-
-  }, [dispatch])
 
   useEffect(() => {
 
