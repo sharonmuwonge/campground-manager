@@ -20,15 +20,9 @@ const LatestReservations = () => {
             }
         }
 
-
-
         fetchLatestReservations()
         .catch(console.error);
     }, [dispatch])
-
-
-    console.log(reservations)
-
 
     return(
         <>
