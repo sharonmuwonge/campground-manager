@@ -76,7 +76,6 @@ const ReservationForm = ({reservationInfo, edit, create}) => {
 
         if (create) {
 
-            console.log('hi')
             const response = await fetch('/reservations', {
                 method: 'POST',
                 body: JSON.stringify(reservation),

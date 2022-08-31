@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom'
 import { useEffect, useState } from "react"
+import { useReservationsContext } from '../../hooks/useReservationsContext'
 
-const LatestReservations = ({reservations}) => {
+const LatestReservations = () => {
+
+    const {reservations, dispatch} = useReservationsContext()
 
     const [items, setItems] = useState([])
 
@@ -12,6 +15,14 @@ const LatestReservations = ({reservations}) => {
           }
 
   }, [reservations])
+
+    useEffect(() => {
+
+        if (reservations && reservations.length > 0) { 
+            setItems(dispatch)
+        }
+
+    }, [dispatch])
 
     return(
         <>
