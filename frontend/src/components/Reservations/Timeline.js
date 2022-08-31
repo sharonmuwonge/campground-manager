@@ -5,11 +5,11 @@ import moment from 'moment'
 
 const ReservationTimeline = ({reservations}) => {
 
-    async function handleReservations() {
-        const res = await reservations
-        let result = res.map( reservation => ({title:`${reservation.firstName} ${reservation.lastName}`, start_time:reservation.arriveDate, end_time:reservation.departDate, group: reservation.campsite}) );
-        return result
-    }
+    // async function handleReservations() {
+    //     const res = await reservations
+    //     let result = res.map( reservation => ({title:`${reservation.firstName} ${reservation.lastName}`, start_time:reservation.arriveDate, end_time:reservation.departDate, group: reservation.campsite}) );
+    //     return result
+    // }
 
 const groups = [{ id: 1, title: 'Site 1' }, { id: 2, title: 'Site 2' }, { id: 6, title: 'Site 6' }]
 // replace with campsites

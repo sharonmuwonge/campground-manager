@@ -21,7 +21,7 @@ const Reservations = () => {
         }
 
         fetchLatestReservations()
-    })
+    }, [dispatch])
 
   return (
     <div>
