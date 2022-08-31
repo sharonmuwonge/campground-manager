@@ -19,7 +19,7 @@ export const reservationsReducer = (state, action) => {
 
 export const ReservationsContextProvider = ({ children}) => {
     const [state, dispatch] = useReducer(reservationsReducer, {
-        reservations: null
+        reservations: []
     })
 
     return (

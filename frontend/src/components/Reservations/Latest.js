@@ -1,6 +1,34 @@
 import {Link} from 'react-router-dom'
+import { useEffect, useState } from "react"
+import { useReservationsContext } from '../../hooks/useReservationsContext'
 
-const LatestReservations = ({reservations}) => {
+
+const LatestReservations = () => {
+
+    const {dispatch} = useReservationsContext()
+    const [reservations, setReservations] = useState([])
+
+    useEffect(() => {
+
+        const fetchLatestReservations = async () => {
+
+            const response = await fetch('/reservations')
+            const json = await response.json()
+            if (response.ok) {
+                dispatch({type: 'SET_RESERVATIONS', payload: json})
+                setReservations(json)
+            }
+        }
+
+
+
+        fetchLatestReservations()
+        .catch(console.error);
+    }, [dispatch])
+
+
+    console.log(reservations)
+
 
     return(
         <>
