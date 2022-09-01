@@ -144,13 +144,13 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
             <input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} required />
 
             <label>Pets:</label>
-            <input type="Number" onChange={(e) => setPets(e.target.value)} value={pets || ''} required />
+            <input type="Number" onChange={(e) => setPets(e.target.value)} value={pets || 0 } required />
             
             <label>License Plate:</label>
             <input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || ''} required />
 
             <label>Vehicles:</label>
-            <input type="text" onChange={(e) => setVehicles(e.target.value)} value={vehicles || ''} required />
+            <input type="text" onChange={(e) => setVehicles(e.target.value)} value={vehicles || 0 } required />
             
             <label>Street Address:</label>
             <input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} required />
@@ -161,10 +161,10 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
             <label>Postal Code:</label>
             <input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} required />
 
-            <label>State Code:</label>
+            <label>State:</label>
             <input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} required />
 
-            <label>Country Code:</label>
+            <label>Country:</label>
             <input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} required />
 
             <label>Customer Phone:</label>
