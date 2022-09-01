@@ -44,8 +44,6 @@ const SingleReservation = ({reservation}) => {
 
     }, [reservation])
 
-    console.log(reservation)
-
     return(
         <div id="singleReservation" className='reservation'>
             <span>First name:</span>
@@ -70,7 +68,7 @@ const SingleReservation = ({reservation}) => {
             <p>{pets || 0}</p>
 
             <span>License Plate:</span>
-            <p>{licensePlate}</p>
+            <p>{licensePlate || '-'}</p>
 
             <span>Vehicles:</span>
             <p>{vehicles || 0}</p>

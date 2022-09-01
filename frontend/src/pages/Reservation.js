@@ -40,7 +40,7 @@ const Reservation = () => {
     <div>
       < Edit editClick={handleClickEdit}  />
       < Cancel formType={'reservation'} />
-      {toggleEdit ? < SingleReservation reservation={reservation} /> : < ReservationForm reservation={reservation} edit={edit} formSubmit={handleClickEdit} id={id} /> }
+      {toggleEdit ? < SingleReservation reservation={reservation} /> : < ReservationForm reservation={reservation} edit={edit} formSubmit={handleClickEdit} buttonClick={handleClickEdit} id={id} /> }
     </div>
   )
 }
