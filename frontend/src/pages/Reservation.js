@@ -13,24 +13,24 @@ const Reservation = () => {
   
   const id = window.location.pathname.slice(14)
 
-  const [reservationInfo, setReservationInfo] = useState(null)
+  const [reservation, setReservation] = useState(null)
   const [toggleEdit, setToggleEdit] = useState(true)
   const [edit] = useState(true)
     
   useEffect(() => {
   
-      const fetchReservationInfo = async () => {
+      const fetchReservation = async () => {
   
           const response = await fetch(`/reservations/${id}`)
           const json = await response.json()
   
           if (response.ok) {
-              setReservationInfo(json)
+              setReservation(json)
           }
       }
   
-      fetchReservationInfo()
-  }, [id])
+      fetchReservation()
+  }, [id, reservation])
 
   function handleClickEdit(event) {
     setToggleEdit(current => !current)
@@ -40,7 +40,7 @@ const Reservation = () => {
     <div>
       < Edit editClick={handleClickEdit}  />
       < Cancel formType={'reservation'} />
-      {toggleEdit ? < SingleReservation reservationInfo={reservationInfo} /> : < ReservationForm reservationInfo={reservationInfo} edit={edit} formSubmit={handleClickEdit} /> }
+      {toggleEdit ? < SingleReservation reservation={reservation} /> : < ReservationForm reservation={reservation} edit={edit} formSubmit={handleClickEdit} id={id} /> }
     </div>
   )
 }

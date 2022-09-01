@@ -4,37 +4,36 @@ import Add from "../Buttons/Add"
 import Save from "../Buttons/Save"
 import Cancel from "../Buttons/Cancel"
 
-const ReservationForm = ({reservationInfo, edit, create, formSubmit, buttonClick}) => {
+const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick}) => {
 
     const {dispatch} = useReservationsContext()
 
-    const [firstName, setFirstName] = useState(reservationInfo && reservationInfo.firstName)
-    const [lastName, setLastName] = useState(reservationInfo && reservationInfo.lastName)
-    const [arriveDate, setArriveDate] = useState(reservationInfo && reservationInfo.arriveDate.slice(0,10))
-    const [departDate, setDepartDate] = useState(reservationInfo && reservationInfo.departDate.slice(0,10))
-    const [campsite, setCampsite] = useState(reservationInfo && reservationInfo.campsite)
-    const [people, setPeople] = useState(reservationInfo && reservationInfo.people)
-    const [pets, setPets] = useState(reservationInfo && reservationInfo.pets)
-    const [licensePlate, setLicensePlate] = useState(reservationInfo && reservationInfo.licensePlate)
-    const [vehicles, setVehicles] = useState(reservationInfo && reservationInfo.vehicles)
-    const [streetAddress, setStreetAddress] = useState(reservationInfo && reservationInfo.streetAddress)
-    const [city, setCity] = useState(reservationInfo && reservationInfo.city)
-    const [postalCode, setPostalCode] = useState(reservationInfo && reservationInfo.postalCode)
-    const [stateCode, setStateCode] = useState(reservationInfo && reservationInfo.stateCode)
-    const [countryCode, setCountryCode] = useState(reservationInfo && reservationInfo.countryCode)
-    const [customerPhone, setCustomerPhone] = useState(reservationInfo && reservationInfo.customerPhone)
-    const [customerEmail, setCustomerEmail] = useState(reservationInfo && reservationInfo.customerEmail)
-    const [paidInFull, setPaidInFull] = useState(reservationInfo && reservationInfo.paidInFull)
-    const [checkedin, setCheckedin] = useState(reservationInfo && reservationInfo.checkedin)
+    const [firstName, setFirstName] = useState(reservation && reservation.firstName)
+    const [lastName, setLastName] = useState(reservation && reservation.lastName)
+    const [arriveDate, setArriveDate] = useState(reservation && reservation.arriveDate.slice(0,10))
+    const [departDate, setDepartDate] = useState(reservation && reservation.departDate.slice(0,10))
+    const [campsite, setCampsite] = useState(reservation && reservation.campsite)
+    const [people, setPeople] = useState(reservation && reservation.people)
+    const [pets, setPets] = useState(reservation && reservation.pets)
+    const [licensePlate, setLicensePlate] = useState(reservation && reservation.licensePlate)
+    const [vehicles, setVehicles] = useState(reservation && reservation.vehicles)
+    const [streetAddress, setStreetAddress] = useState(reservation && reservation.streetAddress)
+    const [city, setCity] = useState(reservation && reservation.city)
+    const [postalCode, setPostalCode] = useState(reservation && reservation.postalCode)
+    const [stateCode, setStateCode] = useState(reservation && reservation.stateCode)
+    const [countryCode, setCountryCode] = useState(reservation && reservation.countryCode)
+    const [customerPhone, setCustomerPhone] = useState(reservation && reservation.customerPhone)
+    const [customerEmail, setCustomerEmail] = useState(reservation && reservation.customerEmail)
+    const [paidInFull, setPaidInFull] = useState(reservation && reservation.paidInFull)
+    const [checkedin, setCheckedin] = useState(reservation && reservation.checkedin)
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
-
+        reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
         if (edit) {
-            const response = await fetch(`/reservations/${reservationInfo._id}`, {
+            const response = await fetch(`/reservations/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(reservation),
                 headers: {
@@ -69,7 +68,7 @@ const ReservationForm = ({reservationInfo, edit, create, formSubmit, buttonClick
                 setPaidInFull(reservation && reservation.paidInFull)
                 setCheckedin(reservation && reservation.checkedin)
                 setError(null)
-                console.log('Reservation updated', json, reservation)
+                console.log('Reservation updated', json)
                 dispatch({type: 'SET_RESERVATIONS', payload: json})
                 formSubmit()
             }
