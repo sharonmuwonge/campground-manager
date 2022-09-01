@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import Add from "../components/Buttons/Add"
-import Cancel from "../components/Buttons/Cancel"
 import ReservationForm from "../components/Forms/Reservation"
 import LatestReservations from "../components/Reservations/Latest"
 import ReservationTimeline from "../components/Reservations/Timeline"
@@ -31,7 +30,6 @@ const Reservations = () => {
 }, [dispatch])
 
   function handleClick (event) {
-    console.log('click')
     setToggleAdd (current => !current)
   }
 
@@ -39,10 +37,9 @@ const Reservations = () => {
     <div>
       <header>
             <h1>Daily Overview</h1>
+            { toggleAdd && < Add addClick={handleClick}  /> }
       </header>
-      < Add addClick={handleClick}  />
-      < Cancel cancelClick={handleClick}  />
-      { !toggleAdd && < ReservationForm create={create} buttonClick={handleClick} /> }
+      { !toggleAdd && < ReservationForm create={create} buttonClick={handleClick}/> }
       < ReservationTimeline reservations={reservations} />
       <h2>Latest Reservations</h2>
       < LatestReservations reservations={reservations}/>

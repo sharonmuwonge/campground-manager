@@ -114,6 +114,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 setError(null)
                 console.log('New reservation added', json)
                 dispatch({type: 'CREATE_RESERVATION', payload: json})
+                buttonClick()
             }
         }
     }
