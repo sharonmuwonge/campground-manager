@@ -29,8 +29,6 @@ const ReservationTimeline = () => {
 
   }, [reservations, dispatch, navigate])
 
-  console.log(items)
-
   return (
     <>
       {items && items.length > 0 ? 

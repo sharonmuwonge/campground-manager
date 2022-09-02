@@ -68,10 +68,12 @@ const reservationSchema = new Schema({
         required: true
     },
     paidInFull: {
-        type: String
+        type: String,
+        required: true
     },
     checkedin: {
-        type: String
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 

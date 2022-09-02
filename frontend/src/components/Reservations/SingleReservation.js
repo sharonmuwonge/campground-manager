@@ -82,10 +82,10 @@ const SingleReservation = ({reservation}) => {
             <span>Postal Code:</span>
             <p>{postalCode}</p>
 
-            <span>State Code:</span>
+            <span>State:</span>
             <p>{stateCode}</p>
 
-            <span>Country Code:</span>
+            <span>Country:</span>
             <p>{countryCode}</p>
 
             <span>Customer Phone:</span>

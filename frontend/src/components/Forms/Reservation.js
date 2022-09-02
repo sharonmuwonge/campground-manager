@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
 import Add from "../Buttons/Add"
 import Save from "../Buttons/Save"
 import Cancel from "../Buttons/Cancel"
+import { Stack, Radio, RadioGroup } from '@chakra-ui/react'
 
 const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick}) => {
 
@@ -27,6 +28,35 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     const [paidInFull, setPaidInFull] = useState(reservation && reservation.paidInFull)
     const [checkedin, setCheckedin] = useState(reservation && reservation.checkedin)
     const [error, setError] = useState(null)
+    const [maxArriveDate, setMaxArriveDate] = useState(null)
+    const [maxDepartDate, setMaxDepartDate] = useState(null)
+    const [minArriveDate, setMinArriveDate] = useState(null)
+    const [minDepartDate, setMinDepartDate] = useState(null)
+    
+    useEffect(() => {
+
+        if (departDate) {
+            setMaxArriveDate(departDate)
+
+            let maxStay = new Date(departDate);
+            maxStay.setDate(maxStay.getDate() - 14)
+            setMinArriveDate(maxStay.toISOString().slice(0,10))
+        }
+
+    }, [departDate])
+
+    useEffect(() => {
+
+        if (arriveDate) {
+            setMinDepartDate(arriveDate)
+
+            let maxStay = new Date(arriveDate);
+            maxStay.setDate(maxStay.getDate() + 14)
+            setMaxDepartDate(maxStay.toISOString().slice(0,10))
+            
+        }
+
+    }, [arriveDate])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -126,6 +156,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 {edit && <h2>Edit reservation</h2>}
                 {create && <h2>Add new reservation</h2>}
 
+                <Stack>
+
                 <label>First name:</label>
                 <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName || ''} required />
 
@@ -133,10 +165,10 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} required />
                 
                 <label>Arrival date:</label>
-                <input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} required />
+                <input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} min={minArriveDate} max={maxArriveDate} required />
 
                 <label>Departure date:</label>
-                <input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} required />
+                <input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} min={minDepartDate} max={maxDepartDate} required />
 
                 <label>Campsite:</label>
                 <input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} required />
@@ -175,10 +207,22 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 <input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} required />
                 
                 <label>Paid in Full:</label>
-                <input type="text" onChange={(e) => setPaidInFull(e.target.value)} value={paidInFull || ''} required />
+                <RadioGroup onChange={(e) => setPaidInFull(e)} value={paidInFull || ''}>
+                    <Stack direction='row'>
+                        <Radio value='No'>No</Radio>
+                        <Radio value='Yes'>Yes</Radio>
+                    </Stack>
+                </RadioGroup>
 
                 <label>Checked In:</label>
-                <input type="string" onChange={(e) => setCheckedin(e.target.value)} value={checkedin || ''} required />
+                <RadioGroup onChange={(e) => setCheckedin(e)} value={checkedin || ''}>
+                    <Stack direction='row'>
+                        <Radio value='No'>No</Radio>
+                        <Radio value='Yes'>Yes</Radio>
+                    </Stack>
+                </RadioGroup>
+
+                </Stack>
 
                 {edit ? < Save formType={'reservation'} /> : < Add formType={'reservation'} />}
             </form>
