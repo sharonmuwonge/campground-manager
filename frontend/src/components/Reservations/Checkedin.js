@@ -15,6 +15,10 @@ const ReservationsCheckedinList = ({date}) => {
             if (response.ok) {
                 setReservationsCheckedin(json)
             }
+
+            if (!response.ok) {
+                setReservationsCheckedin('')
+            }
         }
 
         fetchReservationsCheckedin()

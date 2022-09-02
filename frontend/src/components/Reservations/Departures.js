@@ -15,6 +15,10 @@ const ReservationsDeparturesList = ({date}) => {
             if (response.ok) {
                 setReservationsDepartures(json)
             }
+
+            if (!response.ok) {
+                setReservationsDepartures('')
+            }
         }
 
         fetchReservationsDepartures()
@@ -30,7 +34,7 @@ const ReservationsDeparturesList = ({date}) => {
                     </Link>
                 )) }
                 </ul>
-            : <p>No arrivals.</p>}
+            : <p>No departures.</p>}
         </>
     )
 

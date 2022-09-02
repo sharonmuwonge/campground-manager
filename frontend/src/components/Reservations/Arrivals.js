@@ -15,6 +15,10 @@ const ReservationsArrivalsList = ({date}) => {
             if (response.ok) {
                 setReservationsArrivals(json)
             }
+
+            if (!response.ok) {
+                setReservationsArrivals('')
+            }
         }
 
         fetchReservationsArrivals()
