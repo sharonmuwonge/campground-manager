@@ -12,14 +12,14 @@ const ReservationTimeline = () => {
   const {reservations, dispatch} = useReservationsContext()
   const groups = [{ id: 1, title: 'Site 1' }, { id: 2, title: 'Site 2' }, { id: 4, title: 'Site 4'}, { id: 6, title: 'Site 6' }] // replace with campsites
   const timeSteps = {day: 1}
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
 
     if (reservations && reservations instanceof Array ) { 
         setItems(reservations.map( reservation => ({id:reservation._id, title:`${reservation.firstName} ${reservation.lastName}`, start_time:moment(reservation.arriveDate.slice(0,10)).add(12, 'hours'), end_time:moment(reservation.departDate.slice(0,10)).add(12, 'hours'), group: reservation.campsite,  
         itemProps: {
-          onMouseUp: (e) => { return navigate(`/reservations/${reservation._id}`)},
+          onMouseUp: (e) => { navigate(`/reservations/${reservation._id}`)},
       }})))
       } else {
         console.log(
