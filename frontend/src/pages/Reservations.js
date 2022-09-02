@@ -4,13 +4,14 @@ import ReservationForm from "../components/Forms/Reservation"
 import LatestReservations from "../components/Reservations/Latest"
 import ReservationTimeline from "../components/Reservations/Timeline"
 import { useReservationsContext } from '../hooks/useReservationsContext'
+import { useDisclosure } from "@chakra-ui/react"
 
 const Reservations = () => {
 
   const {dispatch} = useReservationsContext()
   const [create] = useState(true)
   const [reservations, setReservations] = useState([])
-  const [toggleAdd, setToggleAdd] = useState(true)
+  const {isOpen, onClose, onOpen} = useDisclosure()
 
   useEffect(() => {
 
@@ -29,21 +30,18 @@ const Reservations = () => {
 
 }, [dispatch])
 
-  function handleClick (event) {
-    setToggleAdd (current => !current)
-  }
-
   return (
-    <div>
+    <>
       <header>
-            <h1>Daily Overview</h1>
-            { toggleAdd && < Add addClick={handleClick}  /> }
+        <h1>Daily Overview</h1>
+        < ReservationForm />
       </header>
-      { !toggleAdd && < ReservationForm create={create} buttonClick={handleClick}/> }
-      < ReservationTimeline reservations={reservations} />
-      <h2>Latest Reservations</h2>
-      < LatestReservations reservations={reservations}/>
-    </div>
+      <main>
+          <ReservationTimeline reservations={reservations} />
+        <h2>Latest Reservations</h2>
+          <LatestReservations reservations={reservations} create={create} />
+      </main>
+  </>
   )
 }
 

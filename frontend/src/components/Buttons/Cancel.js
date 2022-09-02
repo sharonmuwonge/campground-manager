@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button } from '@chakra-ui/react'
 
+
 function Cancel({formType, cancelClick}) {
+
   return (
-    <Button onClick={cancelClick} size='sm'>Cancel{ formType && ` ${formType}` }</Button>
+    <Button variant='outline' mr={3} onClick={cancelClick}>Cancel{ formType && ` ${formType}` }</Button>
   )
 }
 

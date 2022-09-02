@@ -1,13 +1,28 @@
 import { useState, useEffect } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
-import Add from "../Buttons/Add"
+import Edit from "../Buttons/Edit"
 import Save from "../Buttons/Save"
-import Cancel from "../Buttons/Cancel"
 import { Stack, Radio, RadioGroup, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input } from '@chakra-ui/react'
+import {
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useDisclosure,
+  } from '@chakra-ui/react'
+  import Cancel from "../../components/Buttons/Cancel"
+  import Add from "../../components/Buttons/Add"
+  
 
 const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick}) => {
 
-    const {dispatch} = useReservationsContext()
+    const {reservations, dispatch} = useReservationsContext()
+    
+  const {onOpen, isOpen, onClose } = useDisclosure()
+
 
     const [firstName, setFirstName] = useState(reservation && reservation.firstName)
     const [lastName, setLastName] = useState(reservation && reservation.lastName)
@@ -32,6 +47,33 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     const [maxDepartDate, setMaxDepartDate] = useState(null)
     const [minArriveDate, setMinArriveDate] = useState(null)
     const [minDepartDate, setMinDepartDate] = useState(null)
+
+    useEffect(() => {
+        if (reservation && reservation) { 
+        setFirstName(reservation && reservation.firstName)
+        setLastName(reservation && reservation.lastName)
+        setArriveDate(reservation && reservation.arriveDate.slice(0,10))
+        setDepartDate(reservation && reservation.departDate.slice(0,10))
+        setCampsite(reservation && reservation.campsite)
+        setPeople(reservation && reservation.people)
+        setPets(reservation && reservation.pets)
+        setLicensePlate(reservation && reservation.licensePlate)
+        setVehicles(reservation && reservation.vehicles)
+        setStreetAddress(reservation && reservation.streetAddress)
+        setCity(reservation && reservation.city)
+        setPostalCode(reservation && reservation.postalCode)
+        setStateCode(reservation && reservation.stateCode)
+        setCountryCode(reservation && reservation.countryCode)
+        setCustomerPhone(reservation && reservation.customerPhone)
+        setCustomerEmail(reservation && reservation.customerEmail)
+        setPaidInFull(reservation && reservation.paidInFull)
+        setCheckedin(reservation && reservation.checkedin)
+        } else {
+            console.log(
+            'Waiting for reservation...'
+            )
+        }
+    }, [reservation && reservation.checkedin])
     
     useEffect(() => {
 
@@ -60,6 +102,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        console.log(id)
 
         reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
         if (edit) {
@@ -100,12 +144,14 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 setError(null)
                 console.log('Reservation updated', json)
                 dispatch({type: 'SET_RESERVATIONS', payload: json})
-                formSubmit()
+                onClose()
             }
 
         }
 
-        if (create) {
+        else {
+
+            console.log('hi')
 
             const response = await fetch('/reservations', {
                 method: 'POST',
@@ -125,8 +171,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
             if (response.ok) {
                 setFirstName('')
                 setLastName('')
-                setArriveDate('')
-                setDepartDate('')
+                setArriveDate(null)
+                setDepartDate(null)
                 setCampsite('')
                 setPeople('')
                 setPets('')
@@ -141,128 +187,141 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 setCustomerEmail('')
                 setPaidInFull('')
                 setCheckedin('')
+                setMaxArriveDate(null)
+                setMaxDepartDate(null)
+                setMinArriveDate(null)
+                setMinDepartDate(null)
                 setError(null)
                 console.log('New reservation added', json)
                 dispatch({type: 'CREATE_RESERVATION', payload: json})
-                buttonClick()
+                onClose()
             }
         }
     }
 
     return (
         <>
-            
+        {edit ? <>< Edit editClick={onOpen}/> <Cancel formType={' reservation'} /> </>: <Add addClick={onOpen} />}
+            <Drawer isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent>
+            {edit ? <DrawerHeader>Edit reservation</DrawerHeader> : <DrawerHeader>Add new reservation</DrawerHeader> }
+
+            <DrawerBody>
                 <form id='reservationForm' onSubmit={handleSubmit}>
 
-                    {edit && <h2>Edit reservation</h2>}
-                    {create && <h2>Add new reservation</h2>}
-
-                    <Stack>
-                    < FormControl isRequired>
+                <Stack>
+                < FormControl isRequired>
                     < FormLabel>First name:</ FormLabel>
                     <Input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName || ''} />
-                    </FormControl>
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Last name:</ FormLabel>
-                        <Input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} />
-                    </FormControl>
-                    
-                    
-                    < FormControl isRequired>
-                        < FormLabel>Arrival date:</ FormLabel>
-                        <Input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} min={minArriveDate} max={maxArriveDate} />
-                    </FormControl>
-                    < FormControl isRequired>
-                        < FormLabel>Departure date:</ FormLabel>
-                        <Input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} min={minDepartDate} max={maxDepartDate} />
-                    </FormControl>
-                    
-                    < FormControl isRequired>
-                        < FormLabel>Campsite:</ FormLabel>
-                        <Input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} /> 
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Last name:</ FormLabel>
+                    <Input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>People:</ FormLabel>
-                        <Input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} />
-                    </FormControl>
-                    
-                    < FormControl isRequired>
-                        < FormLabel>Pets:</ FormLabel>
-                        <Input type="number" onChange={(e) => setPets(e.target.value)} value={pets || (edit && '0' )|| '' } />
-                    </FormControl>
-                    
-                    < FormControl isRequired>
-                        < FormLabel>License Plate:</ FormLabel>
-                        <Input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || (edit && '-') || '' } />
-                    </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Vehicles:</ FormLabel>
-                        <Input type="number" onChange={(e) => setVehicles(e.target.value)} value={vehicles || (edit && '0' )|| '' } />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Arrival date:</ FormLabel>
+                    <Input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} min={minArriveDate} max={maxArriveDate} />
+                </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Departure date:</ FormLabel>
+                    <Input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} min={minDepartDate} max={maxDepartDate} />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Street Address:</ FormLabel>
-                        <Input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} />    
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Campsite:</ FormLabel>
+                    <Input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} /> 
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>City:</ FormLabel>
-                        <Input type="text" onChange={(e) => setCity(e.target.value)} value={city || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>People:</ FormLabel>
+                    <Input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Postal Code:</ FormLabel>
-                        <Input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Pets:</ FormLabel>
+                    <Input type="number" onChange={(e) => setPets(e.target.value)} value={pets || (edit && '0' )|| '' } />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>State:</ FormLabel>
-                        <Input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>License Plate:</ FormLabel>
+                    <Input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || (edit && '-') || '' } />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Country:</ FormLabel>
-                        <Input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Vehicles:</ FormLabel>
+                    <Input type="number" onChange={(e) => setVehicles(e.target.value)} value={vehicles || (edit && '0' )|| '' } />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Customer Phone:</ FormLabel>
-                        <Input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Street Address:</ FormLabel>
+                    <Input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} />    
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Customer Email:</ FormLabel>
-                        <Input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} />
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>City:</ FormLabel>
+                    <Input type="text" onChange={(e) => setCity(e.target.value)} value={city || ''} />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Paid in Full:</ FormLabel>
-                        <RadioGroup onChange={(e) => setPaidInFull(e)} value={paidInFull || ''}>
-                            <Stack direction='row'>
-                                <Radio value='No'>No</Radio>
-                                <Radio value='Yes'>Yes</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>Postal Code:</ FormLabel>
+                    <Input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} />
+                </FormControl>
 
-                    < FormControl isRequired>
-                        < FormLabel>Checked In:</ FormLabel>
-                        <RadioGroup onChange={(e) => setCheckedin(e)} value={checkedin || ''}>
-                            <Stack direction='row'>
-                                <Radio value='No'>No</Radio>
-                                <Radio value='Yes'>Yes</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
+                < FormControl isRequired>
+                    < FormLabel>State:</ FormLabel>
+                    <Input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} />
+                </FormControl>
 
-                    </Stack>
+                < FormControl isRequired>
+                    < FormLabel>Country:</ FormLabel>
+                    <Input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} />
+                </FormControl>
 
-                    {edit ? < Save formType={'reservation'} /> : < Add formType={'reservation'} />}
-                    < Cancel cancelClick={buttonClick}/>
-                </form>
+                < FormControl isRequired>
+                    < FormLabel>Customer Phone:</ FormLabel>
+                    <Input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone || ''} />
+                </FormControl>
+
+                < FormControl isRequired>
+                    < FormLabel>Customer Email:</ FormLabel>
+                    <Input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} />
+                </FormControl>
+
+                < FormControl isRequired>
+                    < FormLabel>Paid in Full:</ FormLabel>
+                    <RadioGroup onChange={(e) => setPaidInFull(e)} value={paidInFull || ''}>
+                        <Stack direction='row'>
+                            <Radio value='No'>No</Radio>
+                            <Radio value='Yes'>Yes</Radio>
+                        </Stack>
+                    </RadioGroup>
+                </FormControl>
+
+                < FormControl isRequired>
+                    < FormLabel>Checked In:</ FormLabel>
+                    <RadioGroup onChange={(e) => setCheckedin(e)} value={checkedin || ''}>
+                        <Stack direction='row'>
+                            <Radio value='No'>No</Radio>
+                            <Radio value='Yes'>Yes</Radio>
+                        </Stack>
+                    </RadioGroup>
+                </FormControl>
+
+                </Stack>
+
+</form>
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Cancel cancelClick={onClose} /> 
+              {edit ? <Save /> : <Add/>}
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
         </>
     )
 }

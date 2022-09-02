@@ -32,15 +32,10 @@ const Reservation = () => {
       fetchReservation()
   }, [id, reservation])
 
-  function handleClickEdit(event) {
-    setToggleEdit(current => !current)
-  }
-
   return (
     <div>
-      < Edit editClick={handleClickEdit}  />
-      < Cancel formType={'reservation'} />
-      {toggleEdit ? < SingleReservation reservation={reservation} /> : < ReservationForm reservation={reservation} edit={edit} formSubmit={handleClickEdit} buttonClick={handleClickEdit} id={id} /> }
+      < ReservationForm id={id} reservation={reservation} edit={edit}/>
+      < SingleReservation reservation={reservation} />
     </div>
   )
 }
