@@ -1,15 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { useReservationsContext } from '../../hooks/useReservationsContext'
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-  } from '@chakra-ui/react'
+import {Table, Thead, Tbody, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 
 const LatestReservations = () => {
 

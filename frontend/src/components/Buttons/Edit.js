@@ -1,8 +1,9 @@
 import React from 'react'
+import { Button } from '@chakra-ui/react'
 
 function Edit({type, editClick}) {
   return (
-    <button onClick={editClick}>Edit{ type && ` ${type}` }</button>
+    <Button onClick={editClick} size='sm'>Edit{ type && ` ${type}` }</Button>
   )
 }
 

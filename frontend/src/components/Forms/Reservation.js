@@ -3,7 +3,7 @@ import { useReservationsContext } from "../../hooks/useReservationsContext"
 import Add from "../Buttons/Add"
 import Save from "../Buttons/Save"
 import Cancel from "../Buttons/Cancel"
-import { Stack, Radio, RadioGroup } from '@chakra-ui/react'
+import { Stack, Radio, RadioGroup, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input } from '@chakra-ui/react'
 
 const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick}) => {
 
@@ -151,82 +151,118 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
 
     return (
         <>
-            <form id='reservationForm' onSubmit={handleSubmit}>
+            
+                <form id='reservationForm' onSubmit={handleSubmit}>
 
-                {edit && <h2>Edit reservation</h2>}
-                {create && <h2>Add new reservation</h2>}
+                    {edit && <h2>Edit reservation</h2>}
+                    {create && <h2>Add new reservation</h2>}
 
-                <Stack>
+                    <Stack>
+                    < FormControl isRequired>
+                    < FormLabel>First name:</ FormLabel>
+                    <Input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName || ''} />
+                    </FormControl>
 
-                <label>First name:</label>
-                <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Last name:</ FormLabel>
+                        <Input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} />
+                    </FormControl>
+                    
+                    
+                    < FormControl isRequired>
+                        < FormLabel>Arrival date:</ FormLabel>
+                        <Input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} min={minArriveDate} max={maxArriveDate} />
+                    </FormControl>
+                    < FormControl isRequired>
+                        < FormLabel>Departure date:</ FormLabel>
+                        <Input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} min={minDepartDate} max={maxDepartDate} />
+                    </FormControl>
+                    
+                    < FormControl isRequired>
+                        < FormLabel>Campsite:</ FormLabel>
+                        <Input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} /> 
+                    </FormControl>
 
-                <label>Last name:</label>
-                <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName || ''} required />
-                
-                <label>Arrival date:</label>
-                <input type="date" onChange={(e) => setArriveDate(e.target.value)} value={arriveDate || ''} min={minArriveDate} max={maxArriveDate} required />
+                    < FormControl isRequired>
+                        < FormLabel>People:</ FormLabel>
+                        <Input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} />
+                    </FormControl>
+                    
+                    < FormControl isRequired>
+                        < FormLabel>Pets:</ FormLabel>
+                        <Input type="number" onChange={(e) => setPets(e.target.value)} value={pets || (edit && '0' )|| '' } />
+                    </FormControl>
+                    
+                    < FormControl isRequired>
+                        < FormLabel>License Plate:</ FormLabel>
+                        <Input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || (edit && '-') || '' } />
+                    </FormControl>
 
-                <label>Departure date:</label>
-                <input type="date" onChange={(e) => setDepartDate(e.target.value)} value={departDate || ''} min={minDepartDate} max={maxDepartDate} required />
+                    < FormControl isRequired>
+                        < FormLabel>Vehicles:</ FormLabel>
+                        <Input type="number" onChange={(e) => setVehicles(e.target.value)} value={vehicles || (edit && '0' )|| '' } />
+                    </FormControl>
 
-                <label>Campsite:</label>
-                <input type="number" onChange={(e) => setCampsite(e.target.value)} value={campsite || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Street Address:</ FormLabel>
+                        <Input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} />    
+                    </FormControl>
 
-                <label>People:</label>
-                <input type="number" onChange={(e) => setPeople(e.target.value)} value={people || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>City:</ FormLabel>
+                        <Input type="text" onChange={(e) => setCity(e.target.value)} value={city || ''} />
+                    </FormControl>
 
-                <label>Pets:</label>
-                <input type="number" onChange={(e) => setPets(e.target.value)} value={pets || (edit && '0' )|| '' } required />
-                
-                <label>License Plate:</label>
-                <input type="text" onChange={(e) => setLicensePlate(e.target.value)} value={licensePlate || (edit && '-') || '' } required />
+                    < FormControl isRequired>
+                        < FormLabel>Postal Code:</ FormLabel>
+                        <Input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} />
+                    </FormControl>
 
-                <label>Vehicles:</label>
-                <input type="number" onChange={(e) => setVehicles(e.target.value)} value={vehicles || (edit && '0' )|| '' } required />
-                
-                <label>Street Address:</label>
-                <input type="text" onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>State:</ FormLabel>
+                        <Input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} />
+                    </FormControl>
 
-                <label>City:</label>
-                <input type="text" onChange={(e) => setCity(e.target.value)} value={city || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Country:</ FormLabel>
+                        <Input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} />
+                    </FormControl>
 
-                <label>Postal Code:</label>
-                <input type="text" onChange={(e) => setPostalCode(e.target.value)} value={postalCode || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Customer Phone:</ FormLabel>
+                        <Input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone || ''} />
+                    </FormControl>
 
-                <label>State:</label>
-                <input type="Text" onChange={(e) => setStateCode(e.target.value)} value={stateCode || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Customer Email:</ FormLabel>
+                        <Input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} />
+                    </FormControl>
 
-                <label>Country:</label>
-                <input type="text" onChange={(e) => setCountryCode(e.target.value)} value={countryCode || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Paid in Full:</ FormLabel>
+                        <RadioGroup onChange={(e) => setPaidInFull(e)} value={paidInFull || ''}>
+                            <Stack direction='row'>
+                                <Radio value='No'>No</Radio>
+                                <Radio value='Yes'>Yes</Radio>
+                            </Stack>
+                        </RadioGroup>
+                    </FormControl>
 
-                <label>Customer Phone:</label>
-                <input type="number" onChange={(e) => setCustomerPhone(e.target.value)} value={customerPhone || ''} required />
+                    < FormControl isRequired>
+                        < FormLabel>Checked In:</ FormLabel>
+                        <RadioGroup onChange={(e) => setCheckedin(e)} value={checkedin || ''}>
+                            <Stack direction='row'>
+                                <Radio value='No'>No</Radio>
+                                <Radio value='Yes'>Yes</Radio>
+                            </Stack>
+                        </RadioGroup>
+                    </FormControl>
 
-                <label>Customer Email:</label>
-                <input type="email" onChange={(e) => setCustomerEmail(e.target.value)} value={customerEmail || ''} required />
-                
-                <label>Paid in Full:</label>
-                <RadioGroup onChange={(e) => setPaidInFull(e)} value={paidInFull || ''}>
-                    <Stack direction='row'>
-                        <Radio value='No'>No</Radio>
-                        <Radio value='Yes'>Yes</Radio>
                     </Stack>
-                </RadioGroup>
 
-                <label>Checked In:</label>
-                <RadioGroup onChange={(e) => setCheckedin(e)} value={checkedin || ''}>
-                    <Stack direction='row'>
-                        <Radio value='No'>No</Radio>
-                        <Radio value='Yes'>Yes</Radio>
-                    </Stack>
-                </RadioGroup>
-
-                </Stack>
-
-                {edit ? < Save formType={'reservation'} /> : < Add formType={'reservation'} />}
-            </form>
-            < Cancel cancelClick={buttonClick}/>
+                    {edit ? < Save formType={'reservation'} /> : < Add formType={'reservation'} />}
+                    < Cancel cancelClick={buttonClick}/>
+                </form>
         </>
     )
 }

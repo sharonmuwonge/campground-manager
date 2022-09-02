@@ -1,8 +1,9 @@
 import React from 'react'
+import { Button } from '@chakra-ui/react'
 
 function Login(props) {
   return (
-    <button>Login</button>
+    <Button size='sm'>Login</Button>
   )
 }
 
