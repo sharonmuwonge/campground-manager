@@ -57,10 +57,10 @@ const ReservationsCheckedinList = ({date}) => {
                 <Table variant='simple' size='sm' id="checkedin" className='reservations'>
                     <Thead>
                     <Tr>
-                        <Th width='25%'>Campsite</Th>
-                        <Th width='25%'>Name</Th>
-                        <Th width='25%'>Arrive Date</Th>
-                        <Th width='25%'>Depart Date</Th>
+                        <Th width='20%'>Campsite</Th>
+                        <Th width='40%'>Name</Th>
+                        <Th width='20%'>Arrive Date</Th>
+                        <Th width='20%'>Depart Date</Th>
                     </Tr>
                     </Thead>
                     {getTableBody()}

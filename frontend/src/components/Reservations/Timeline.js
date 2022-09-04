@@ -1,5 +1,8 @@
 import React from 'react'
-import Timeline from 'react-calendar-timeline'
+import Timeline, {
+  TimelineHeaders,
+  DateHeader
+} from 'react-calendar-timeline'
 import 'react-calendar-timeline/lib/Timeline.css'
 import moment from 'moment'
 import { useEffect, useState } from "react"
@@ -11,7 +14,6 @@ const ReservationTimeline = () => {
   const [items, setItems] = useState([])
   const {reservations, dispatch} = useReservationsContext()
   const groups = [{ id: 1, title: 'Site 1' }, { id: 2, title: 'Site 2' }, { id: 4, title: 'Site 4'}, { id: 6, title: 'Site 6' }] // replace with campsites
-  const timeSteps = {day: 1}
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -35,11 +37,14 @@ const ReservationTimeline = () => {
         <Timeline
         groups={groups}
         items={items}
-        defaultTimeStart={moment().add(-1, 'day')}
-        defaultTimeEnd={moment().add(3, 'day')}
-        timeSteps={timeSteps}
-        canMove={false}
-        />
+        defaultTimeStart={moment().add(-10, 'day')}
+        defaultTimeEnd={moment().add(10, 'day')}
+        canMove={false} >
+          <TimelineHeaders>
+            <DateHeader unit="month"/>
+            <DateHeader unit="day" labelFormat="D"/>
+          </TimelineHeaders>
+        </Timeline>
         : <p>Loading...</p>}
     </>
   )

@@ -1,4 +1,4 @@
-import CampsiteList from "./Campsites/CampsiteList"
+import CampsiteList from "../../src/components/Campsites/CampsiteList"
 
 const Campsites = () => {
   return (
