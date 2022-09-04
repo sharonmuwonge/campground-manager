@@ -191,7 +191,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     return (
         <>
             {edit ? <>< Edit editClick={onOpen}/> <Cancel formType={' reservation'} /> </>: <Add addClick={onOpen} />}
-            <Drawer isOpen={isOpen}>
+            <Drawer isOpen={isOpen} onClose={onClose}>
                 <DrawerOverlay />
                 <DrawerContent>
                     {edit ? <DrawerHeader>Edit reservation</DrawerHeader> : <DrawerHeader>Add new reservation</DrawerHeader> }

@@ -4,6 +4,7 @@ import ReservationsDeparturesList from "./Reservations/Departures"
 import ReservationsCheckedinList from "./Reservations/Checkedin"
 import SelectedDate from "./Forms/Date"
 import { useState } from 'react'
+import { Heading } from "@chakra-ui/react"
 
 const Overview = () => {
 
@@ -18,16 +19,16 @@ const Overview = () => {
             < SelectedDate dateChange = {handleChange} />
             <ul>
                 <li>
-                    <h3>Arrivals</h3>
-                    < ReservationsArrivalsList date={date}/>
+                    <Heading as='h3' size='sm'>Arrivals</Heading>
+                    <ReservationsArrivalsList date={date} />
                 </li>
                 <li>
-                    <h3>Departures</h3>
-                    < ReservationsDeparturesList date={date}/>
+                    <Heading as='h3' size='sm'>Departures</Heading>
+                    <ReservationsDeparturesList date={date} />
                 </li>
                 <li id="checkedInInfo">
-                    <h3>Checked in</h3>
-                    < ReservationsCheckedinList date={date}/>
+                    <Heading as='h3' size='sm'>Checked-in</Heading>
+                    <ReservationsCheckedinList date={date} />
                 </li>
             </ul>
     </section>

@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react"
-import Add from "../components/Buttons/Add"
 import ReservationForm from "../components/Forms/Reservation"
 import LatestReservations from "../components/Reservations/Latest"
 import ReservationTimeline from "../components/Reservations/Timeline"
 import { useReservationsContext } from '../hooks/useReservationsContext'
-import { useDisclosure } from "@chakra-ui/react"
+import { Heading } from "@chakra-ui/react"
 
 const Reservations = () => {
 
   const {dispatch} = useReservationsContext()
   const [create] = useState(true)
   const [reservations, setReservations] = useState([])
-  const {isOpen, onClose, onOpen} = useDisclosure()
 
   useEffect(() => {
 
@@ -33,12 +31,12 @@ const Reservations = () => {
   return (
     <>
       <header>
-        <h1>Daily Overview</h1>
+        <Heading as='h1' size='md'>Reservations</Heading>
         < ReservationForm />
       </header>
       <main>
           <ReservationTimeline reservations={reservations} />
-        <h2>Latest Reservations</h2>
+        <Heading as='h2' size='sm'>Latest Reservations</Heading>
           <LatestReservations reservations={reservations} create={create} />
       </main>
   </>

@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Table, Thead, Tbody, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 const ReservationsArrivalsList = ({date}) => {
 
     const [reservationsArrivals, setReservationsArrivals] = useState(null)
-
+    const navigate = useNavigate()
+    
     useEffect(() => {
 
         const fetchReservationsArrivals = async () => {
@@ -24,17 +26,46 @@ const ReservationsArrivalsList = ({date}) => {
         fetchReservationsArrivals()
     }, [date])
 
+    const getTableBody = () => {
+        if (reservationsArrivals && reservationsArrivals.length > 0 ) {
+            const tableBody = 
+                <Tbody>
+                    {reservationsArrivals.map((reservation) => (
+                        <Tr className='reservationInfo' key={reservation._id} onClick={(e) => { navigate(`/reservations/${reservation._id}`)}} cursor='pointer'>
+                                <Td>{reservation.campsite}</Td>
+                                <Td>{reservation.firstName} {reservation.lastName}</Td>
+                                <Td>{reservation.arriveDate && reservation.arriveDate.slice(0,10)}</Td>
+                                <Td>{reservation.departDate && reservation.departDate.slice(0,10)}</Td>
+                        </Tr>
+                    )) }
+                </Tbody>
+            return tableBody
+        } else {
+            const tableBody = 
+                <Tbody>
+                    <Tr className='reservationInfo' >
+                            <Td>No arrivals.</Td>
+                    </Tr>
+                </Tbody>
+            return tableBody
+        }
+    }
+
     return(
-        <>
-            {reservationsArrivals && reservationsArrivals.length > 0 ?
-                <ul id="arrivals" className='reservations'>
-                {reservationsArrivals.map((reservation) => (
-                    <li className='reservation' key={reservation._id}><Link to={`/reservations/${reservation._id}`}> 
-                    {reservation.firstName} {reservation.lastName} | {reservation.arriveDate.slice(0,10)} - {reservation.departDate.slice(0,10)}
-                    </Link></li>
-                )) }
-                </ul>
-            : <p>No arrivals.</p>}
+        <>  
+            <TableContainer>
+                <Table variant='simple' size='sm' id="arrivals" className='reservations'>
+                    <Thead>
+                    <Tr>
+                        <Th width='20%'>Campsite</Th>
+                        <Th width='40%'>Name</Th>
+                        <Th width='20%'>Arrive Date</Th>
+                        <Th width='20%'>Depart Date</Th>
+                    </Tr>
+                    </Thead>
+                    {getTableBody()}
+                </Table>
+            </TableContainer>
         </>
     )
 

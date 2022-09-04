@@ -21,13 +21,13 @@ const LatestReservations = () => {
         <>  
             {items instanceof Array && items.length > 0 ? 
                 <TableContainer>
-                    <Table variant='simple' id="latest" className='reservations'>
+                    <Table variant='simple' size='sm' id="latest" className='reservations'>
                         <Thead>
                         <Tr>
-                            <Th>Campsite</Th>
-                            <Th>Name</Th>
-                            <Th>Arrive Date</Th>
-                            <Th>Depart Date</Th>
+                            <Th width='20%'>Campsite</Th>
+                            <Th width='40%'>Name</Th>
+                            <Th width='20%'>Arrive Date</Th>
+                            <Th width='20%'>Depart Date</Th>
                         </Tr>
                         </Thead>
                         <Tbody>

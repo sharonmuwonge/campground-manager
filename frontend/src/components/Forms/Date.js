@@ -1,3 +1,4 @@
+import { FormLabel, Input } from '@chakra-ui/react';
 import { useState } from 'react'
 
 const SelectedDate = ({dateChange}) => {
@@ -10,8 +11,8 @@ const SelectedDate = ({dateChange}) => {
 
     return (
         <form action="">
-                <label htmlFor="selectedDate">Date:</label>
-            <input size='sm' type="date" defaultValue={date} name="selectedDate" id="selectedDate"  onChange={dateChange} /> 
+            <FormLabel htmlFor="selectedDate">Date:</FormLabel>
+            <Input size='sm' type="date" defaultValue={date} name="selectedDate" id="selectedDate"  onChange={dateChange} /> 
         </form>
     )
 }
