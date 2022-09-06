@@ -1,8 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import ReservationForm from "../components/Forms/Reservation"
 import SingleReservation from "../components/Reservations/SingleReservation"
-import Edit from "../components/Buttons/Edit"
-import Cancel from "../components/Buttons/Cancel"
 
 const Reservation = () => {
 
@@ -14,7 +12,6 @@ const Reservation = () => {
   const id = window.location.pathname.slice(14)
 
   const [reservation, setReservation] = useState(null)
-  const [toggleEdit, setToggleEdit] = useState(true)
   const [edit] = useState(true)
     
   useEffect(() => {
