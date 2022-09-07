@@ -20,7 +20,7 @@ const campsiteSchema = new Schema({
         required: true
     },
     campsiteType: {
-        type: Array,
+        type: String,
         required: true
     },
     facilityLongitude: {
@@ -40,7 +40,7 @@ const campsiteSchema = new Schema({
         required: true
     },
     permittedEquipment: {
-        type: Array,
+        type: String,
         required: true
     },
     amenities: {
@@ -88,7 +88,7 @@ const campsiteSchema = new Schema({
         required: true
     },
     media: {
-        type: Array,
+        type: String,
         required: false
     }
 }, {timestamps: true})

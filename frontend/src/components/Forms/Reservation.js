@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useReservationsContext } from "../../hooks/useReservationsContext"
 import Edit from "../Buttons/Edit"
 import Save from "../Buttons/Save"
-import { Stack, Radio, RadioGroup, FormControl,FormLabel, FormErrorMessage, FormHelperText, Input } from '@chakra-ui/react'
+import { Stack, Radio, RadioGroup, FormControl, FormLabel, FormErrorMessage, FormHelperText, Input } from '@chakra-ui/react'
 import {
     Drawer,
     DrawerBody,
@@ -23,7 +23,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
         return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,10)
       }
   
-      const clear = () => {
+    const clear = () => {
         setFirstName('')
         setLastName('')
         setArriveDate(null)
@@ -47,7 +47,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
         setMinArriveDate(null)
         setMinDepartDate(null)
         setError(null)
-      }
+    }
 
     const bottomOfForm = reservation && reservation.checkedin
     const {dispatch} = useReservationsContext()
@@ -80,24 +80,24 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
 
     useEffect(() => {
         if (reservation && reservation) { 
-        setFirstName(reservation && reservation.firstName)
-        setLastName(reservation && reservation.lastName)
-        setArriveDate(reservation && reservation.arriveDate.slice(0,10))
-        setDepartDate(reservation && reservation.departDate.slice(0,10))
-        setCampsite(reservation && reservation.campsite)
-        setPeople(reservation && reservation.people)
-        setPets(reservation && reservation.pets)
-        setLicensePlate(reservation && reservation.licensePlate)
-        setVehicles(reservation && reservation.vehicles)
-        setStreetAddress(reservation && reservation.streetAddress)
-        setCity(reservation && reservation.city)
-        setPostalCode(reservation && reservation.postalCode)
-        setStateCode(reservation && reservation.stateCode)
-        setCountryCode(reservation && reservation.countryCode)
-        setCustomerPhone(reservation && reservation.customerPhone)
-        setCustomerEmail(reservation && reservation.customerEmail)
-        setPaidInFull(reservation && reservation.paidInFull)
-        setCheckedin(reservation && reservation.checkedin)
+            setFirstName(reservation && reservation.firstName)
+            setLastName(reservation && reservation.lastName)
+            setArriveDate(reservation && reservation.arriveDate.slice(0,10))
+            setDepartDate(reservation && reservation.departDate.slice(0,10))
+            setCampsite(reservation && reservation.campsite)
+            setPeople(reservation && reservation.people)
+            setPets(reservation && reservation.pets)
+            setLicensePlate(reservation && reservation.licensePlate)
+            setVehicles(reservation && reservation.vehicles)
+            setStreetAddress(reservation && reservation.streetAddress)
+            setCity(reservation && reservation.city)
+            setPostalCode(reservation && reservation.postalCode)
+            setStateCode(reservation && reservation.stateCode)
+            setCountryCode(reservation && reservation.countryCode)
+            setCustomerPhone(reservation && reservation.customerPhone)
+            setCustomerEmail(reservation && reservation.customerEmail)
+            setPaidInFull(reservation && reservation.paidInFull)
+            setCheckedin(reservation && reservation.checkedin)
         } else {
             console.log(
             'Waiting for reservation...'
@@ -134,9 +134,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(id)
-
         reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
+       
         if (edit) {
             const response = await fetch(`/reservations/${id}`, {
                 method: 'PUT',
@@ -159,7 +158,6 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 dispatch({type: 'SET_RESERVATIONS', payload: json})
                 onClose()
             }
-
         }
 
         else {
@@ -304,7 +302,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                     </DrawerBody>
                     <DrawerFooter>
                         <Cancel cancelClick={onClose} /> 
-                        {edit ? <Save /> : <Add/>}
+                        {edit ? <Save formName='reservationForm' /> : <Add formName='reservationForm' />}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

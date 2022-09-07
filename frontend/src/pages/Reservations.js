@@ -26,7 +26,7 @@ const Reservations = () => {
 
     fetchLatestReservations()
 
-}, [dispatch])
+}, [reservations, dispatch])
 
   return (
     <>

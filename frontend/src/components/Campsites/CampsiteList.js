@@ -20,7 +20,7 @@ function CampsiteList() {
         }
 
         fetchCampsites()
-    }, [])
+    }, [campsites])
 
   return (
     <>
@@ -42,7 +42,6 @@ function CampsiteList() {
                         textTransform='uppercase'
                         ml='2'
                         >
-                        Sweetwater
                         {campsite.facilityName}
                         </Box>
                     </Box>

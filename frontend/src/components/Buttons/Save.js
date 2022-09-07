@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from '@chakra-ui/react'
 
-function Save({formType, addClick}) {
+function Save({formType, addClick, formName}) {
   return (
-    <Button type='submit' onClick={addClick} form='reservationForm'>Save{ formType && ` ${formType}` }</Button>
+    <Button type='submit' onClick={addClick} form={formName} >Save{ formType && ` ${formType}` }</Button>
   )
 }
 
