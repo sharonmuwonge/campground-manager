@@ -15,6 +15,6 @@ router.get('/', getCampsites)
 router.post('/', createCampsite)
 
 // Get, edit or delete a specific campsite
-router.route('/:id').get(getCampsite).patch(updateCampsite).delete(deleteCampsite)
+router.route('/:id').get(getCampsite).put(updateCampsite).delete(deleteCampsite)
 
 module.exports = router

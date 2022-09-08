@@ -68,7 +68,7 @@ const getReservation = async (req, res) => {
 
     // only check db if ObjectId is used
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json('Reservation not found')
+        return res.status(404).json('Not a valid ID')
     }
 
     const reservation = await Reservation.findById(id)
@@ -106,7 +106,7 @@ const updateReservation = async (req, res) => {
         return res.status(404).json('Reservation not found')
     }
 
-    res.status(200).json(`Reservation ${id} updated.`)
+    res.status(200).json(`Reservation ${id}.`)
 }
 
 //Delete single reservation, DELETE /reservations/:id, private

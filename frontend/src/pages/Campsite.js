@@ -27,7 +27,7 @@ const Campsite = () => {
       }
   
       fetchCampsite()
-  }, [id])
+  }, [id, campsite])
 
   return (
     <div>

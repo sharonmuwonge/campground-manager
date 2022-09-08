@@ -20,7 +20,7 @@ const getCampsite = async (req, res) => {
 
     // only check db if ObjectId is used
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json('Campsite not found')
+        return res.status(404).json('Not a valid ID')
     }
 
     const campsite = await Campsite.findById(id)
@@ -54,7 +54,7 @@ const updateCampsite = async (req, res) => {
 
     // only check db if ObjectId is used
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json('Campsite not found')
+        return res.status(404).json('Not a valid ID')
     }
 
     const campsite = await Campsite.findOneAndUpdate({_id: id}, {...req.body})
@@ -63,7 +63,7 @@ const updateCampsite = async (req, res) => {
         return res.status(404).json('Campsite not found')
     }
 
-    res.status(200).json(`Campsite ${id} updated: ${campsite}`)
+    res.status(200).json(`Campsite ${id}.`)
 }
 
 //Delete single campsite, DELETE /campsites/:id, private

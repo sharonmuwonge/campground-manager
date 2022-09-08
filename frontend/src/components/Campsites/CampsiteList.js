@@ -64,8 +64,8 @@ function CampsiteList() {
                         </Box>
                     </Box>
                     </Box>
-                    <Box as='p' ml='2' color='gray.600' fontSize='sm'><strong>allowed equipment:</strong> 
-                    {/* {campsite.permittedEquipment} */}
+                    <Box as='p' ml='2' color='gray.600' fontSize='sm'><strong>Permitted equipment:</strong> 
+                    {campsite.permittedEquipment}
                     </Box>
                 </Box> 
             )) }

@@ -50,7 +50,7 @@ const SingleCampsite = ({campsite}) => {
         setPetFee(campsite && campsite.petFee)
         setMedia(campsite && campsite.media)
 
-    }, [campsite])
+    })
 
     return(
         <div id="singleCampsite" className='campsite'>

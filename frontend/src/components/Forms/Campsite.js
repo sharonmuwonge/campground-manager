@@ -102,9 +102,9 @@ import {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('hi')
+
         campsite = { campsiteID, campsiteName, facilityID, facilityName, campsiteType, facilityLongitude, facilityLatitude, uses, onLoop, permittedEquipment, amenities, feePerNight, reservationFee, maxVehicles, vehicleFee, maxPersons, tentsAllowed, maxTents, petsAllowed, maxPets, petFee, media }
-        
+
         if (edit) {
             const response = await fetch(`/campsites/${id}`, {
                 method: 'PUT',

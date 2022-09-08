@@ -11,6 +11,6 @@ const {createUser,
 router.post('/', createUser)
 
 // Get, edit or delete a specific user
-router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser)
+router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
 
 module.exports = router

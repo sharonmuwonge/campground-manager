@@ -15,6 +15,6 @@ router.get('/', getFacilities)
 router.post('/', createFacility)
 
 // Get, edit or delete a specific facility
-router.route('/:id').get(getFacility).patch(updateFacility).delete(deleteFacility)
+router.route('/:id').get(getFacility).put(updateFacility).delete(deleteFacility)
 
 module.exports = router
