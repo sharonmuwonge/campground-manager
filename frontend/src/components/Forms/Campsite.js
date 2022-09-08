@@ -165,87 +165,87 @@ import {
                             <Stack>
 
                             < FormControl isRequired>
-                            <FormLabel>Campsite ID:</FormLabel>
+                            <FormLabel>Campsite ID</FormLabel>
                                 <Input type="number" onChange={(e) => setCampsiteID(e.target.value)} value={campsiteID || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Campsite name:</FormLabel>
+                            <FormLabel>Campsite name</FormLabel>
                                 <Input type="text" onChange={(e) => setCampsiteName(e.target.value)} value={campsiteName || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Facility ID:</FormLabel>
+                            <FormLabel>Facility ID</FormLabel>
                                 <Input type="number" onChange={(e) => setFacilityID(e.target.value)} value={facilityID || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Facility name:</FormLabel>
+                            <FormLabel>Facility name</FormLabel>
                                 <Input type="text" onChange={(e) => setFacilityName(e.target.value)} value={facilityName || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Campsite type:</FormLabel>
+                            <FormLabel>Campsite type</FormLabel>
                                 <Input type="text" onChange={(e) => setCampsiteType(e.target.value)} value={campsiteType || ''} /> 
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Facility longitude:</FormLabel>
+                            <FormLabel>Facility longitude</FormLabel>
                                 <Input type="number" onChange={(e) => setFacilityLongitude(e.target.value)} value={facilityLongitude || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Facility latitude:</FormLabel>
+                            <FormLabel>Facility latitude</FormLabel>
                                 <Input type="number" onChange={(e) => setFacilityLatitude(e.target.value)} value={facilityLatitude || '' } />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>Uses:</FormLabel>
+                            <FormLabel>Uses</FormLabel>
                                 <Input type="text" onChange={(e) => setUses(e.target.value)} value={uses || '' } />
                             </FormControl>
 
                             < FormControl isRequired>
-                            <FormLabel>On loop:</FormLabel>
+                            <FormLabel>On loop</FormLabel>
                                 <Input type="number" onChange={(e) => setOnLoop(e.target.value)} value={onLoop || '' } />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Permitted equipment:</FormLabel>
+                                <FormLabel>Permitted equipment</FormLabel>
                                 <Input type="text" onChange={(e) => setPermittedEquipment(e.target.value)} value={permittedEquipment || ''} />    
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Amenities:</FormLabel>
+                                <FormLabel>Amenities</FormLabel>
                                 <Input type="text" onChange={(e) => setAmenities(e.target.value)} value={amenities || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Fee per night:</FormLabel>
+                                <FormLabel>Fee per night</FormLabel>
                                 <Input type="number" onChange={(e) => setFeePerNight(e.target.value)} value={feePerNight || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Reservation fee:</FormLabel>
+                                <FormLabel>Reservation fee</FormLabel>
                                 <Input type="number" onChange={(e) => setReservationFee(e.target.value)} value={reservationFee || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Max vehicles:</FormLabel>
+                                <FormLabel>Max vehicles</FormLabel>
                                 <Input type="numbers" onChange={(e) => setMaxVehicles(e.target.value)} value={maxVehicles || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Vehicle fee:</FormLabel>
+                                <FormLabel>Vehicle fee</FormLabel>
                                 <Input type="number" onChange={(e) => setVehicleFee(e.target.value)} value={vehicleFee || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Max persons:</FormLabel>
+                                <FormLabel>Max persons</FormLabel>
                                 <Input type="number" onChange={(e) => setMaxPersons(e.target.value)} value={maxPersons || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Tents allowed:</FormLabel>
+                                <FormLabel>Tents allowed</FormLabel>
                                 <RadioGroup onChange={(e) => setTentsAllowed(e)} value={tentsAllowed || ''}>
                                     <Stack direction='row'>
                                         <Radio value='No'>No</Radio>
@@ -255,12 +255,12 @@ import {
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Max tents:</FormLabel>
+                                <FormLabel>Max tents</FormLabel>
                                 <Input type="number" onChange={(e) => setMaxTents(e.target.value)} value={maxTents || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Pets allowed:</FormLabel>
+                                <FormLabel>Pets allowed</FormLabel>
                                 <RadioGroup onChange={(e) => setPetsAllowed(e)} value={petsAllowed || ''}>
                                     <Stack direction='row'>
                                         <Radio value='No'>No</Radio>
@@ -270,17 +270,17 @@ import {
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Max pets:</FormLabel>
+                                <FormLabel>Max pets</FormLabel>
                                 <Input type="number" onChange={(e) => setMaxPets(e.target.value)} value={maxPets || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Pet fee:</FormLabel>
+                                <FormLabel>Pet fee</FormLabel>
                                 <Input type="number" onChange={(e) => setPetFee(e.target.value)} value={petFee || ''} />
                             </FormControl>
 
                             < FormControl isRequired>
-                                <FormLabel>Media:</FormLabel>
+                                <FormLabel>Media</FormLabel>
                                 <Input type="image" onChange={(e) => setMedia(e.target.value)} value={media || ''} />
                             </FormControl>
 

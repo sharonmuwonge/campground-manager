@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Heading, Text } from "@chakra-ui/react"
 
 const SingleCampsite = ({campsite}) => {
 
@@ -55,71 +56,71 @@ const SingleCampsite = ({campsite}) => {
     return(
         <div id="singleCampsite" className='campsite'>
             
-            <span>Campsite ID:</span>
-            <p>{campsiteID}</p>
+            <Heading as='h2' size='sm'>Campsite ID</ Heading>
+            <Text fontSize='sm'>{campsiteID}</ Text>
 
-            <span>Campsite name:</span>
-            <p>{campsiteName}</p>
+            <Heading as='h2' size='sm'>Campsite name</ Heading>
+            <Text fontSize='sm'>{campsiteName}</ Text>
             
-            <span>Facility ID:</span>
-            <p>{facilityID}</p>
+            <Heading as='h2' size='sm'>Facility ID</ Heading>
+            <Text fontSize='sm'>{facilityID}</ Text>
 
-            <span>Facility name:</span>
-            <p>{facilityName}</p>
+            <Heading as='h2' size='sm'>Facility name</ Heading>
+            <Text fontSize='sm'>{facilityName}</ Text>
             
-            <span>Campsite type:</span>
-            <p>{campsiteType}</p>
+            <Heading as='h2' size='sm'>Campsite type</ Heading>
+            <Text fontSize='sm'>{campsiteType}</ Text>
             
-            <span>Facility longitude:</span>
-            <p>{facilityLongitude}</p>
+            <Heading as='h2' size='sm'>Facility longitude</ Heading>
+            <Text fontSize='sm'>{facilityLongitude}</ Text>
 
-            <span>Facility latitude:</span>
-            <p>{facilityLatitude}</p>
+            <Heading as='h2' size='sm'>Facility latitude</ Heading>
+            <Text fontSize='sm'>{facilityLatitude}</ Text>
 
-            <span>Uses:</span>
-            <p>{uses}</p>
+            <Heading as='h2' size='sm'>Uses</ Heading>
+            <Text fontSize='sm'>{uses}</ Text>
 
-            <span>On loop:</span>
-            <p>{onLoop}</p>
+            <Heading as='h2' size='sm'>On loop</ Heading>
+            <Text fontSize='sm'>{onLoop}</ Text>
 
-            <span>Permitted equipment:</span>
-            <p>{permittedEquipment}</p>
+            <Heading as='h2' size='sm'>Permitted equipment</ Heading>
+            <Text fontSize='sm'>{permittedEquipment}</ Text>
 
-            <span>Amenities:</span>
-            <p>{amenities}</p>
+            <Heading as='h2' size='sm'>Amenities</ Heading>
+            <Text fontSize='sm'>{amenities}</ Text>
             
-            <span>Fee per night:</span>
-            <p>{feePerNight}</p>
+            <Heading as='h2' size='sm'>Fee per night</ Heading>
+            <Text fontSize='sm'>{feePerNight}</ Text>
             
-            <span>Reservation fee:</span>
-            <p>{reservationFee}</p>
+            <Heading as='h2' size='sm'>Reservation fee</ Heading>
+            <Text fontSize='sm'>{reservationFee}</ Text>
             
-            <span>Max vehicles:</span>
-            <p>{maxVehicles}</p>
+            <Heading as='h2' size='sm'>Max vehicles</ Heading>
+            <Text fontSize='sm'>{maxVehicles}</ Text>
             
-            <span>Vehicle fee:</span>
-            <p>{vehicleFee}</p>
+            <Heading as='h2' size='sm'>Vehicle fee</ Heading>
+            <Text fontSize='sm'>{vehicleFee}</ Text>
             
-            <span>Max persons:</span>
-            <p>{maxPersons}</p>
+            <Heading as='h2' size='sm'>Max persons</ Heading>
+            <Text fontSize='sm'>{maxPersons}</ Text>
             
-            <span>Tents allowed:</span>
-            <p>{tentsAllowed}</p>
+            <Heading as='h2' size='sm'>Tents allowed</ Heading>
+            <Text fontSize='sm'>{tentsAllowed}</ Text>
             
-            <span>Max tents:</span>
-            <p>{maxTents}</p>
+            <Heading as='h2' size='sm'>Max tents</ Heading>
+            <Text fontSize='sm'>{maxTents}</ Text>
             
-            <span>Pets allowed:</span>
-            <p>{petsAllowed}</p>
+            <Heading as='h2' size='sm'>Pets allowed</ Heading>
+            <Text fontSize='sm'>{petsAllowed}</ Text>
             
-            <span>Max pets:</span>
-            <p>{maxPets}</p>
+            <Heading as='h2' size='sm'>Max pets</ Heading>
+            <Text fontSize='sm'>{maxPets}</ Text>
             
-            <span>Pet fee:</span>
-            <p>{petFee}</p>
+            <Heading as='h2' size='sm'>Pet fee</ Heading>
+            <Text fontSize='sm'>{petFee}</ Text>
             
-            <span>Media:</span>
-            <p>{media}</p>
+            <Heading as='h2' size='sm'>Media</ Heading>
+            <Text fontSize='sm'>{media}</ Text>
 
         </div>
     )

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Heading, Text } from "@chakra-ui/react"
 
 const SingleReservation = ({reservation}) => {
 
@@ -46,59 +47,59 @@ const SingleReservation = ({reservation}) => {
 
     return(
         <div id="singleReservation" className='reservation'>
-            <span>First name:</span>
-            <p>{firstName}</p>
+            <Heading as='h2' size='sm'>First name</ Heading>
+            <Text fontSize='sm'>{firstName}</ Text>
 
-            <span>Last name:</span>
-            <p>{lastName}</p>
+            <Heading as='h2' size='sm'>Last name</ Heading>
+            <Text fontSize='sm'>{lastName}</ Text>
             
-            <span>Arrival date:</span>
-            <p>{arriveDate}</p>
+            <Heading as='h2' size='sm'>Arrival date</ Heading>
+            <Text fontSize='sm'>{arriveDate}</ Text>
 
-            <span>Departure date:</span>
-            <p>{departDate}</p>
+            <Heading as='h2' size='sm'>Departure date</ Heading>
+            <Text fontSize='sm'>{departDate}</ Text>
 
-            <span>Campsite:</span>
-            <p>{campsite}</p>
+            <Heading as='h2' size='sm'>Campsite</ Heading>
+            <Text fontSize='sm'>{campsite}</ Text>
 
-            <span>People:</span>
-            <p>{people}</p>
+            <Heading as='h2' size='sm'>People</ Heading>
+            <Text fontSize='sm'>{people}</ Text>
 
-            <span>Pets:</span>
-            <p>{pets || 0}</p>
+            <Heading as='h2' size='sm'>Pets</ Heading>
+            <Text fontSize='sm'>{pets || 0}</ Text>
 
-            <span>License Plate:</span>
-            <p>{licensePlate || '-'}</p>
+            <Heading as='h2' size='sm'>License Plate</ Heading>
+            <Text fontSize='sm'>{licensePlate || '-'}</ Text>
 
-            <span>Vehicles:</span>
-            <p>{vehicles || 0}</p>
+            <Heading as='h2' size='sm'>Vehicles</ Heading>
+            <Text fontSize='sm'>{vehicles || 0}</ Text>
 
-            <span>Street Address:</span>
-            <p>{streetAddress}</p>
+            <Heading as='h2' size='sm'>Street Address</ Heading>
+            <Text fontSize='sm'>{streetAddress}</ Text>
 
-            <span>City:</span>
-            <p>{city}</p>
+            <Heading as='h2' size='sm'>City</ Heading>
+            <Text fontSize='sm'>{city}</ Text>
 
-            <span>Postal Code:</span>
-            <p>{postalCode}</p>
+            <Heading as='h2' size='sm'>Postal Code</ Heading>
+            <Text fontSize='sm'>{postalCode}</ Text>
 
-            <span>State:</span>
-            <p>{stateCode}</p>
+            <Heading as='h2' size='sm'>State</ Heading>
+            <Text fontSize='sm'>{stateCode}</ Text>
 
-            <span>Country:</span>
-            <p>{countryCode}</p>
+            <Heading as='h2' size='sm'>Country</ Heading>
+            <Text fontSize='sm'>{countryCode}</ Text>
 
-            <span>Customer Phone:</span>
-            <p>{customerPhone}</p>
+            <Heading as='h2' size='sm'>Customer Phone</ Heading>
+            <Text fontSize='sm'>{customerPhone}</ Text>
 
-            <span>Customer Email:</span>
-            <p>{customerEmail}</p>
+            <Heading as='h2' size='sm'>Customer Email</ Heading>
+            <Text fontSize='sm'>{customerEmail}</ Text>
 
-            <span>Paid in Full:</span>
-            <p>{paidInFull}</p>
+            <Heading as='h2' size='sm'>Paid in Full</ Heading>
+            <Text fontSize='sm'>{paidInFull}</ Text>
 
-            <span>Checked In:</span>
-            <p>{checkedin}</p>
+            <Heading as='h2' size='sm'>Checked In</ Heading>
+            <Text fontSize='sm'>{checkedin}</ Text>
 
         </div>
     )

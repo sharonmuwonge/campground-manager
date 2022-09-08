@@ -29,17 +29,13 @@ const Reservations = () => {
 }, [reservations, dispatch])
 
   return (
-    <>
-      <header>
-        <Heading as='h1' size='md'>Reservations</Heading>
+    <main>
+      <Heading as='h1' size='md'>Reservations</Heading>
         < ReservationForm />
-      </header>
-      <main>
-          <ReservationTimeline reservations={reservations} />
-        <Heading as='h2' size='sm'>Latest Reservations</Heading>
-          <LatestReservations reservations={reservations} create={create} />
-      </main>
-  </>
+        <ReservationTimeline reservations={reservations} />
+      <Heading as='h2' size='sm'>Latest Reservations</Heading>
+        <LatestReservations reservations={reservations} create={create} />
+    </main>
   )
 }
 

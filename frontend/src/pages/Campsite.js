@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import CampsiteForm from "../components/Forms/Campsite"
 import SingleCampsite from "../components/Campsites/SingleCampsite"
+import { Heading } from '@chakra-ui/react'
 
 const Campsite = () => {
 
@@ -30,10 +31,11 @@ const Campsite = () => {
   }, [id, campsite])
 
   return (
-    <div>
-        < CampsiteForm id={id} campsite={campsite} edit={edit}/>
-        < SingleCampsite campsite={campsite} />
-    </div>
+    <main>
+        <Heading as='h1' size='md'>Campsite {campsite && campsite.campsiteID}</Heading>
+          < CampsiteForm id={id} campsite={campsite} edit={edit}/>
+          < SingleCampsite campsite={campsite} />
+    </main> 
   )
 }
 

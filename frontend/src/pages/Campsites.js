@@ -1,15 +1,16 @@
 import CampsiteList from "../../src/components/Campsites/CampsiteList"
 import Map from "../components/Campsites/Map"
-import { Flex } from "@chakra-ui/react"
+import { Flex, Heading } from "@chakra-ui/react"
 
 const Campsites = () => {
   return (
-    <>
-      < Flex w='100%' flexDirection={['column', 'column', 'column', 'row']}>
-        <CampsiteList />
-        <Map />
-      </Flex>
-    </>
+    <main>
+        <Heading as='h1' size='md'>Campsites</Heading>
+          < Flex w='100%' flexDirection={['column', 'column', 'column', 'row']}>
+            <CampsiteList />
+            <Map />
+          </Flex>
+    </main>    
   )
 }
 

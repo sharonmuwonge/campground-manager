@@ -1,3 +1,4 @@
+import { Heading } from '@chakra-ui/react'
 import { React, useEffect, useState } from 'react'
 import ReservationForm from "../components/Forms/Reservation"
 import SingleReservation from "../components/Reservations/SingleReservation"
@@ -30,10 +31,11 @@ const Reservation = () => {
   }, [id, reservation])
 
   return (
-    <div>
-      < ReservationForm id={id} reservation={reservation} edit={edit}/>
-      < SingleReservation reservation={reservation} />
-    </div>
+    <main>
+      <Heading as='h1' size='md'>Reservation {id}</Heading>
+        < ReservationForm id={id} reservation={reservation} edit={edit}/>
+        < SingleReservation reservation={reservation} />
+    </main>    
   )
 }
 
