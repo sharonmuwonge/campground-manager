@@ -1,6 +1,28 @@
 const User = require('../models/userModel')
 const mongoose = require('mongoose')
 
+// Login user
+const loginUser = async (req, res) => {
+
+    res.json({mssg: 'login user'})
+}
+
+// Sign up user
+
+const signupUser = async (req, res) => {
+
+    const {email, password} = req.body
+
+    try {
+        const user = await User.signup(email, password)
+
+        res.status(200).json({email, user})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+
 //Get user info, GET /users/:id, private
 
 const getUser = async (req, res) => {
@@ -80,4 +102,4 @@ const deleteUser = async (req, res) => {
     res.status(200).json(`User ${id} deleted.`)
 }
 
-module.exports = {getUser, createUser, updateUser, deleteUser}
+module.exports = { signupUser, loginUser /* getUser, createUser, updateUser, deleteUser */}
