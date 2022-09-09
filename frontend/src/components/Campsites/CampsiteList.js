@@ -53,14 +53,12 @@ function CampsiteList() {
                         lineHeight='tight'
                         noOfLines={1}
                     >
-                        Full hookup 
-                        {/* {campsite.campsiteType} */}
+                        {campsite.campsiteType}
                     </Box>
 
                     <Box>
                         <Box as='p' color='gray.600' fontSize='sm'>
-                        {/* {campsite.feePerNight}  */}
-                        $ 30 / night
+                        $ {campsite.feePerNight} / night
                         </Box>
                     </Box>
                     </Box>
