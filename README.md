@@ -1,1 +1,2 @@
-# campground-manager
+# Campground manager dashboard
+

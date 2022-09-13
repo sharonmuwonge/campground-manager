@@ -26,8 +26,8 @@ const LatestReservations = () => {
                         <Tr>
                             <Th width='20%'>Campsite</Th>
                             <Th width='40%'>Name</Th>
-                            <Th width='20%'>Arrive Date</Th>
-                            <Th width='20%'>Depart Date</Th>
+                            <Th width='20%'>Arrival</Th>
+                            <Th width='20%'>Departure</Th>
                         </Tr>
                         </Thead>
                         <Tbody>

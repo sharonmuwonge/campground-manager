@@ -7,6 +7,6 @@ export const useReservationsContext = () => {
     if (!context) {
         throw Error('useReservationsContext must be used inside a ReservationsContextProvider')
     }
-
+ 
     return context
 }
