@@ -7,6 +7,8 @@ import Reservation from './pages/Reservation';
 import Reservations from './pages/Reservations';
 import Campsites from './pages/Campsites';
 import Campsite from './pages/Campsite';
+import Login from './pages/Login';
+import Settings from './pages/Settings';
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
             <Route path='/campsites' element={<Campsites />}/>
             <Route path='/reservations/:id' element={<Reservation id={id}/>}/>
             <Route path='/campsites/:id' element={<Campsite id={id}/>}/>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/settings' element={<Settings />}/>
           </Routes>
         </div>
       </BrowserRouter>

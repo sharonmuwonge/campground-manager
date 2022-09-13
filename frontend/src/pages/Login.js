@@ -1,6 +1,6 @@
-import Login from "../components/Buttons/Login"
+import Login from "../components/Forms/Login"
 
-const Login = () => {
+const LoginForm = () => {
   return (
     <div>
         <header>
@@ -13,4 +13,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginForm

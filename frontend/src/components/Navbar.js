@@ -29,8 +29,8 @@ const Navbar = () => {
                                         <Link className='nav-link' to='/campsites'>Campsites</Link>
                                     </li>
                                     <li className='nav-item' onClick={onClose}>
-                                        <Link className='nav-link' to='/user'>
-                                            {/* import user firstname and lastname from db */}
+                                        <Link className='nav-link' to='/settings'>
+                                            {/* import user firstname and lastname from db */} Settings
                                         </Link>
                                     </li>
                                 </ul>
