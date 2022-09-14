@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Edit from "../Buttons/Edit"
 import Delete from "../Buttons/Delete"
 import Save from "../Buttons/Save"
@@ -12,18 +12,23 @@ import {
     DrawerContent,
     useDisclosure,
   } from '@chakra-ui/react'
-  import Cancel from "../../components/Buttons/Cancel"
-  import Add from "../../components/Buttons/Add"
+import Cancel from "../../components/Buttons/Cancel"
+import Add from "../../components/Buttons/Add"
+import { useAddUser } from "../../hooks/useAddUser"
 
 const UserForm = ({edit}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
     const {onOpen, isOpen, onClose } = useDisclosure()
+    const { addUser, isLoading, error, closeDrawer, setCloseDrawer }= useAddUser()
 
     const handleSubmit = async (e) => {
+
         e.preventDefault()
-  
+
+        
+        await addUser(email, password)
         // if (edit) {
         //     const response = await fetch(`/reservations/${id}`, {
         //         method: 'PUT',
@@ -74,6 +79,26 @@ const UserForm = ({edit}) => {
         // }
     }
 
+    useEffect(() => {
+
+        console.log(closeDrawer)
+
+        if (closeDrawer) {
+            onClose()
+        }
+
+    }, [closeDrawer])
+
+    useEffect(() => {
+
+        if (onOpen) {
+            setCloseDrawer(null)
+        }
+
+        console.log(closeDrawer)
+
+    }, [onOpen])
+
     return (
         <>
             {edit ? <>< Edit editClick={onOpen}/> <Delete formType={' user'} /> </>: <Add addClick={onOpen} />}
@@ -99,10 +124,12 @@ const UserForm = ({edit}) => {
 
                             </Stack>
                         </form>
+
+                        {error && <div className="error">{error}</div>}
                     </DrawerBody>
                     <DrawerFooter>
                         <Cancel cancelClick={onClose} /> 
-                        {edit ? <Save formName='userForm' /> : <Add formName='userForm' />}
+                        {edit ? <Save formName='userForm' disabled={isLoading} /> : <Add formName='userForm' />}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
