@@ -21,7 +21,7 @@ const UserForm = ({edit}) => {
     const [password, setPassword] = useState('')
     
     const {onOpen, isOpen, onClose } = useDisclosure()
-    const { addUser, isLoading, error, closeDrawer, setCloseDrawer }= useAddUser()
+    const { addUser, isLoading, error, closeDrawer }= useAddUser()
 
     const handleSubmit = async (e) => {
 

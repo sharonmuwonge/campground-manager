@@ -1,16 +1,16 @@
-import Login from "../components/Forms/Login"
+import SignInForm from "../components/Forms/SignIn"
 
-const LoginForm = () => {
+const SignIn = () => {
   return (
     <div>
         <header>
-            <h1>Please log in</h1>
+            <h1>Please sign in</h1>
         </header>
         <main>
-          < Login />
+          < SignInForm />
         </main>
     </div>
   )
 }
 
-export default LoginForm
+export default SignIn

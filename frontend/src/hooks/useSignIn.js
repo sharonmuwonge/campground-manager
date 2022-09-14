@@ -1,17 +1,19 @@
 import { useState } from "react"
+import { useAuthContext } from "./useAuthContext"
 
-export const useAddUser = () => {
+export const useSignIn = () => {
 
     const [error, setError] = useState(null)
     const [closeDrawer, setCloseDrawer] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
+    const {dispatch} = useAuthContext()
 
-    const addUser = async (email, password) => {
+    const signIn = async (email, password) => {
         setIsLoading(true)
         setError(null)
         setCloseDrawer(null)
 
-        const response = await fetch('/users/signup', {
+        const response = await fetch('/users/login', {
             method: 'POST',
             body: JSON.stringify({email, password}),
             headers: {'Content-Type': 'application/json'} 
@@ -24,14 +26,22 @@ export const useAddUser = () => {
         }
 
         if (response.ok) {
+            // Save user to local storage 
+
+            localStorage.setItem('user', JSON.stringify(json))
 
             setError(null)
-            console.log('New user added', json)
+            console.log('User signed in', json)
+
+            // Update auth context
+
+            dispatch({type: 'SIGNIN', payload: json})
+
             setIsLoading(false)
             setCloseDrawer(true)
         }
     }
 
-    return { addUser, isLoading, error, closeDrawer, setCloseDrawer }
+    return { signIn, isLoading, error, closeDrawer, setCloseDrawer }
 
 }

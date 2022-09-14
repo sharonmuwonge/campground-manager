@@ -1,9 +1,17 @@
 import { Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
-// import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { useSignOut } from '../hooks/useSignOut'
+
+// Only show navbar when logged in 
 
 const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { signOut } = useSignOut()
+
+    const handleClick = () => {
+        signOut()
+        onClose()
+    }
 
     return (
         <header>
@@ -31,6 +39,11 @@ const Navbar = () => {
                                     <li className='nav-item' onClick={onClose}>
                                         <Link className='nav-link' to='/settings'>
                                             {/* import user firstname and lastname from db */} Settings
+                                        </Link>
+                                    </li>
+                                    <li className='nav-item' onClick={handleClick}>
+                                        <Link className='nav-link' to='/settings'>
+                                            Sign out
                                         </Link>
                                     </li>
                                 </ul>

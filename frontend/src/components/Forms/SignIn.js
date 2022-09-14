@@ -1,14 +1,17 @@
 import { useState } from "react"
-import Login from "../Buttons/Login"
+import Login from "../Buttons/SignIn"
 import { Stack, FormControl, FormLabel, Input } from '@chakra-ui/react'
-  import Cancel from "../../components/Buttons/Cancel"
+import {useSignIn} from '../../hooks/useSignIn'
 
-const LoginForm = () => {
+const SignInForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {signIn, error, isLoading} = useSignIn()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        await signIn(email, password)
         
         // if (edit) {
         //     const response = await fetch(`/reservations/${id}`, {
@@ -62,7 +65,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <form id='LoginForm' onSubmit={handleSubmit}>
+            <form id='signInForm' onSubmit={handleSubmit}>
                 <Stack>
 
                 < FormControl isRequired>
@@ -79,10 +82,10 @@ const LoginForm = () => {
 
                 </Stack>
             </form>
-            <Cancel /> 
-            <Login formName='LoginForm' />
+            <Login formName='signInForm' disabled={isLoading}/>
+            {error && <div className="error">{error}</div>}
         </>
     )
 }
 
-export default LoginForm
+export default SignInForm
