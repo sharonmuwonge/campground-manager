@@ -89,16 +89,6 @@ const UserForm = ({edit}) => {
 
     }, [closeDrawer])
 
-    useEffect(() => {
-
-        if (onOpen) {
-            setCloseDrawer(null)
-        }
-
-        console.log(closeDrawer)
-
-    }, [onOpen])
-
     return (
         <>
             {edit ? <>< Edit editClick={onOpen}/> <Delete formType={' user'} /> </>: <Add addClick={onOpen} />}
