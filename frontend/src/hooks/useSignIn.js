@@ -13,7 +13,7 @@ export const useSignIn = () => {
         setError(null)
         setCloseDrawer(null)
 
-        const response = await fetch('/users/login', {
+        const response = await fetch('/users/signin', {
             method: 'POST',
             body: JSON.stringify({email, password}),
             headers: {'Content-Type': 'application/json'} 

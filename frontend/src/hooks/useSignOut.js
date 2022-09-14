@@ -10,7 +10,7 @@ export const useSignOut = () => {
         localStorage.removeItem('user')
 
         // dispatch logout action
-        dispatch('SIGNOUT')
+        dispatch({type: 'SIGNOUT'})
     }
 
     return {signOut}

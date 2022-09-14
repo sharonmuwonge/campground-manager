@@ -5,7 +5,7 @@ const { signupUser, loginUser /* getUser, createUser, updateUser, deleteUser */ 
 
 
 // login route
-router.post('/login', loginUser)
+router.post('/signin', loginUser)
 
 // signup route
 router.post('/signup', signupUser)
