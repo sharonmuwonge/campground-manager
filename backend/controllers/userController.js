@@ -7,7 +7,7 @@ const createToken = (_id) => {
 }
 
 // Login user
-const loginUser = async (req, res) => {
+const signinUser = async (req, res) => {
     const {email, password} = req.body
 
     try {
@@ -120,4 +120,4 @@ const deleteUser = async (req, res) => {
     res.status(200).json(`User ${id} deleted.`)
 }
 
-module.exports = { signupUser, loginUser /* getUser, createUser, updateUser, deleteUser */}
+module.exports = { signupUser, signinUser /* getUser, createUser, updateUser, deleteUser */}

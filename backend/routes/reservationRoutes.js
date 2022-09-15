@@ -11,6 +11,11 @@ const {getLatestReservations,
         deleteReservation
     } = require('../controllers/reservationController')
 
+const requireAuth = require('../middleware/requireAuth')
+
+// pass authorization validation before accessing APIs
+router.use(requireAuth)
+
 // Get all reservations
 router.get('/', getLatestReservations)
 

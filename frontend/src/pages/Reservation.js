@@ -2,6 +2,8 @@ import { Heading } from '@chakra-ui/react'
 import { React, useEffect, useState } from 'react'
 import ReservationForm from "../components/Forms/Reservation"
 import SingleReservation from "../components/Reservations/SingleReservation"
+import { useAuthContext } from '../hooks/useAuthContext'
+
 
 const Reservation = () => {
 
@@ -14,21 +16,30 @@ const Reservation = () => {
 
   const [reservation, setReservation] = useState(null)
   const [edit] = useState(true)
+
+  const {user} = useAuthContext()
     
   useEffect(() => {
   
       const fetchReservation = async () => {
   
-          const response = await fetch(`/reservations/${id}`)
+          const response = await fetch(`/reservations/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        })
           const json = await response.json()
   
           if (response.ok) {
               setReservation(json)
           }
       }
-  
-      fetchReservation()
-  }, [id, reservation])
+
+      if (user) {
+        fetchReservation()
+    }
+      
+  }, [id, reservation, user])
 
   return (
     <main>

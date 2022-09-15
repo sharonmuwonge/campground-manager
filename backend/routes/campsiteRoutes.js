@@ -8,6 +8,12 @@ const {getCampsites,
     deleteCampsite
     } = require('../controllers/campsiteController')
 
+const requireAuth = require('../middleware/requireAuth')
+
+// pass authorization validation before accessing APIs
+router.use(requireAuth)
+    
+
 // Get all campsites
 router.get('/', getCampsites)
 

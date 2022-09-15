@@ -4,18 +4,24 @@ import LatestReservations from "../components/Reservations/Latest"
 import ReservationTimeline from "../components/Reservations/Timeline"
 import { useReservationsContext } from '../hooks/useReservationsContext'
 import { Heading } from "@chakra-ui/react"
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Reservations = () => {
 
   const {dispatch} = useReservationsContext()
   const [create] = useState(true)
   const [reservations, setReservations] = useState([])
+  const {user} = useAuthContext()
 
   useEffect(() => {
 
     const fetchLatestReservations = async () => {
 
-        const response = await fetch('/reservations')
+        const response = await fetch('/reservations', {
+          headers: {
+              'Authorization': `Bearer ${user.token}`
+          }
+      })
         const json = await response.json()
         if (response.ok) {
             dispatch({type: 'SET_RESERVATIONS', payload: json})
@@ -24,9 +30,11 @@ const Reservations = () => {
 
       } 
 
-    fetchLatestReservations()
+      if (user) {
+        fetchLatestReservations()
+      }
 
-}, [reservations, dispatch])
+}, [dispatch, user])
 
   return (
     <main>

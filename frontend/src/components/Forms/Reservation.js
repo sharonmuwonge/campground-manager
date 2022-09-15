@@ -14,6 +14,7 @@ import {
   } from '@chakra-ui/react'
   import Cancel from "../../components/Buttons/Cancel"
   import Add from "../../components/Buttons/Add"
+  import { useAuthContext } from '../../hooks/useAuthContext'
   
 
 const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick}) => {
@@ -52,6 +53,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     const bottomOfForm = reservation && reservation.checkedin
     const {dispatch} = useReservationsContext()
     const {onOpen, isOpen, onClose } = useDisclosure()
+    const {user} = useAuthContext()
 
     const [firstName, setFirstName] = useState(reservation && reservation.firstName)
     const [lastName, setLastName] = useState(reservation && reservation.lastName)
@@ -134,6 +136,11 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
+
         reservation = {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin}
        
         if (edit) {
@@ -141,7 +148,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 method: 'PUT',
                 body: JSON.stringify(reservation),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
     
@@ -166,7 +174,8 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                 method: 'POST',
                 body: JSON.stringify(reservation),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
     
@@ -303,6 +312,7 @@ const ReservationForm = ({id, reservation, edit, create, formSubmit, buttonClick
                     <DrawerFooter>
                         <Cancel cancelClick={onClose} /> 
                         {edit ? <Save formName='reservationForm' /> : <Add formName='reservationForm' />}
+                        {error && <div className="error">{error}</div>}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

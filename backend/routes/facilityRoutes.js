@@ -8,6 +8,12 @@ const {getFacilities,
     deleteFacility
     } = require('../controllers/facilityController')
 
+const requireAuth = require('../middleware/requireAuth')
+
+// pass authorization validation before accessing APIs
+router.use(requireAuth)
+    
+
 // Get all facilities
 router.get('/', getFacilities)
 

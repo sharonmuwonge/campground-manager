@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react'
 import {Table, Thead, Tbody, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const ReservationsCheckedinList = ({date}) => {
 
     const [reservationsCheckedin, setReservationsCheckedin] = useState(null)
     const navigate = useNavigate()
+    const {user} = useAuthContext()
 
     useEffect(() => {
 
         const fetchReservationsCheckedin = async () => {
 
-            const response = await fetch(`/reservations/${date}/checkedin`)
+            const response = await fetch(`/reservations/${date}/checkedin`, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            }
+            )
             const json = await response.json()
 
             if (response.ok) {
@@ -23,8 +30,11 @@ const ReservationsCheckedinList = ({date}) => {
             }
         }
 
-        fetchReservationsCheckedin()
-    }, [date])
+        if (user) {
+            fetchReservationsCheckedin()
+        }
+
+    }, [date, user])
     
     const getTableBody = () => {
         if (reservationsCheckedin && reservationsCheckedin.length > 0 ) {
