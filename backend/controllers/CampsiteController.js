@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const getCampsites = async (req, res) => {
 
     try {
+        const facility = req.user.facility
         const campsites = await Campsite.find({}).sort({campsiteID: 1})
         res.status(200).json(campsites)
         console.log(campsites)

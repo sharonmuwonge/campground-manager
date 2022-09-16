@@ -38,7 +38,6 @@ export const useSignIn = () => {
             dispatch({type: 'SIGNIN', payload: json})
 
             setIsLoading(false)
-            setCloseDrawer(true)
         }
     }
 

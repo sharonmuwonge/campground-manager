@@ -6,7 +6,8 @@ const mongoose = require('mongoose')
 const getLatestReservations = async (req, res) => {
 
     try {
-        const reservations = await Reservation.find({}).sort({createdAt: -1}).limit(20)
+        const facility = req.user.facility
+        const reservations = await Reservation.find({facility}).sort({createdAt: -1}).limit(20)
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -20,7 +21,8 @@ const getReservationsArrivals = async (req, res) => {
     console.log(date)
 
     try {
-        const reservations = await Reservation.find({arriveDate: date}).sort({createdAt: -1})
+        const facility = req.user.facility
+        const reservations = await Reservation.find({facility, arriveDate: date}).sort({createdAt: -1})
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -36,7 +38,8 @@ const getReservationsDepartures = async (req, res) => {
     console.log(date)
 
     try {
-        const reservations = await Reservation.find({departDate: date}).sort({createdAt: -1})
+        const facility = req.user.facility
+        const reservations = await Reservation.find({facility, departDate: date}).sort({createdAt: -1})
     res.status(200).json(reservations)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -50,7 +53,9 @@ const getReservationsCheckedin = async (req, res) => {
     console.log(date)
 
     try {
+        const facility = req.user.facility
         const reservations = await Reservation.find({
+            facility,
             "arriveDate": { $lte: date
             },
             "departDate": { $gt: date
@@ -84,7 +89,8 @@ const getReservation = async (req, res) => {
 const createReservation = async (req, res) => {
     const {firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin} = req.body
     try {
-        const reservation = await Reservation.create({firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin})
+        const facility = req.user.facility
+        const reservation = await Reservation.create({firstName, lastName, arriveDate, departDate, campsite, people, pets, licensePlate, vehicles, streetAddress, city, postalCode, stateCode, countryCode, customerPhone, customerEmail, paidInFull, checkedin, facility})
         res.status(200).json(reservation)
     } catch (error) {
         res.status(400).json({error: error.message})

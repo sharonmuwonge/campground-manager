@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route, useParams} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useParams, Navigate} from 'react-router-dom'
 import {useAuthContext} from './hooks/useAuthContext'
 
 // Pages & components
@@ -24,13 +24,13 @@ function App() {
             <Navbar />
           )}
           <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/reservations' element={<Reservations />}/>
-            <Route path='/campsites' element={<Campsites />}/>
-            <Route path='/reservations/:id' element={<Reservation id={id}/>}/>
-            <Route path='/campsites/:id' element={<Campsite id={id}/>}/>
-            <Route path='/signin' element={<SignIn />}/>
-            <Route path='/settings' element={<Settings />}/>
+            <Route path='/' element={user ? <Home /> : <Navigate to="/signin"/>}/>
+            <Route path='/reservations' element={user ? <Reservations /> : <Navigate to="/signin"/>}/>
+            <Route path='/campsites' element={user ? <Campsites /> : <Navigate to="/signin"/>}/>
+            <Route path='/reservations/:id' element={user ? <Reservation id={id}/> : <Navigate to="/signin"/>}/>
+            <Route path='/campsites/:id' element={user ? <Campsite id={id}/> : <Navigate to="/signin"/>}/>
+            <Route path='/signin' element={!user ? <SignIn /> : <Navigate to="/"/>}/>
+            <Route path='/settings' element={user ? <Settings /> : <Navigate to="/signin"/>}/>
           </Routes>
         </div>
       </BrowserRouter>

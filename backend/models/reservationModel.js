@@ -74,6 +74,10 @@ const reservationSchema = new Schema({
     checkedin: {
         type: String,
         required: true
+    },
+    facility: {
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 

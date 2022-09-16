@@ -2,21 +2,14 @@ import { useState } from "react"
 import Login from "../Buttons/SignIn"
 import { Stack, FormControl, FormLabel, Input } from '@chakra-ui/react'
 import {useSignIn} from '../../hooks/useSignIn'
-import { useAuthContext } from '../../hooks/useAuthContext'
 
 const SignInForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {signIn, error, setError, isLoading} = useSignIn()
-    const {user} = useAuthContext()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        if (!user) {
-            setError('You must be logged in')
-            return
-        }
 
         await signIn(email, password)
 
@@ -90,7 +83,6 @@ const SignInForm = () => {
                 </Stack>
             </form>
             <Login formName='signInForm' disabled={isLoading}/>
-            {error && <div className="error">{error}</div>}
         </>
     )
 }
