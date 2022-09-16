@@ -1,17 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Box, Image, Badge } from '@chakra-ui/react'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 function CampsiteList() {
 
     const [campsites, setCampsites] = useState(null)
     const navigate = useNavigate()
+    const {user} = useAuthContext()
 
     useEffect(() => {
 
         const fetchCampsites = async () => {
 
-            const response = await fetch('/campsites')
+            const response = await fetch('/campsites', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
 
             if (response.ok) {
@@ -19,8 +25,11 @@ function CampsiteList() {
             }
         }
 
-        fetchCampsites()
-    }, [campsites])
+        if (user) {
+            fetchCampsites()
+        }
+
+    }, [campsites, user])
 
   return (
     <>

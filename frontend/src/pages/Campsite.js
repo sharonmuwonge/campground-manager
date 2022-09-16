@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react'
 import CampsiteForm from "../components/Forms/Campsite"
 import SingleCampsite from "../components/Campsites/SingleCampsite"
 import { Heading } from '@chakra-ui/react'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Campsite = () => {
 
@@ -14,12 +15,17 @@ const Campsite = () => {
 
   const [campsite, setCampsite] = useState(null)
   const [edit] = useState(true)
+  const {user} = useAuthContext()
     
   useEffect(() => {
   
       const fetchCampsite = async () => {
   
-          const response = await fetch(`/campsites/${id}`)
+          const response = await fetch(`/campsites/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        })
           const json = await response.json()
   
           if (response.ok) {
@@ -27,8 +33,11 @@ const Campsite = () => {
           }
       }
   
-      fetchCampsite()
-  }, [id, campsite])
+      if (user) {
+        fetchCampsite()
+      }
+      
+  }, [id, campsite, user])
 
   return (
     <main>

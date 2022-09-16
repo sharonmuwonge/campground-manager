@@ -15,18 +15,24 @@ import {
 import Cancel from "../../components/Buttons/Cancel"
 import Add from "../../components/Buttons/Add"
 import { useAddUser } from "../../hooks/useAddUser"
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const UserForm = ({edit}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
     const {onOpen, isOpen, onClose } = useDisclosure()
-    const { addUser, isLoading, error, closeDrawer }= useAddUser()
+    const { addUser, isLoading, error, setError, closeDrawer }= useAddUser()
+    const {user} = useAuthContext()
 
     const handleSubmit = async (e) => {
 
         e.preventDefault()
 
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
         
         await addUser(email, password)
         // if (edit) {
@@ -120,6 +126,7 @@ const UserForm = ({edit}) => {
                     <DrawerFooter>
                         <Cancel cancelClick={onClose} /> 
                         {edit ? <Save formName='userForm' disabled={isLoading} /> : <Add formName='userForm' />}
+                        {error && <div className="error">{error}</div>}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

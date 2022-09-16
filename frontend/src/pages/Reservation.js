@@ -37,7 +37,7 @@ const Reservation = () => {
 
       if (user) {
         fetchReservation()
-    }
+      }
       
   }, [id, reservation, user])
 

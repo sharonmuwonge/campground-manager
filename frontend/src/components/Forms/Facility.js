@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Add from "../Buttons/Add"
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const FacilityForm = () => {
     const [facilityID, setFacilityID] = useState('')
@@ -20,8 +21,16 @@ const FacilityForm = () => {
     const [media, setMedia] = useState('')
     const [error, setError] = useState(null)
 
+    const {user} = useAuthContext()
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
 
         const facility = {facilityID, facilityName, facilityDescription, facilityPhone, facilityURL, facilityLongitude, facilityLatitude, facilityStreetAddress, city, postalCode, stateCode, countryCode, stayLimit, reservable, activity, media}
 
@@ -29,7 +38,8 @@ const FacilityForm = () => {
             method: 'POST',
             body: JSON.stringify(facility),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
@@ -116,6 +126,7 @@ const FacilityForm = () => {
             <input type="file" onChange={(e) => setMedia(e.target.value)} value={media} />
 
             < Add />
+            {error && <div className="error">{error}</div>}
         </form>
     )
 }

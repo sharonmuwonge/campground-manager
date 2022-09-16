@@ -13,6 +13,7 @@ import {
   } from '@chakra-ui/react'
   import Cancel from "../../components/Buttons/Cancel"
   import Add from "../../components/Buttons/Add"
+  import { useAuthContext } from '../../hooks/useAuthContext'
 
   const CampsiteForm = ({id, campsite, edit, create, formSubmit, buttonClick}) => {
 
@@ -44,6 +45,7 @@ import {
     
     const bottomOfForm = campsite && campsite.media
     const {onOpen, isOpen, onClose } = useDisclosure()
+    const {user} = useAuthContext()
 
     const [campsiteID, setCampsiteID] = useState(campsite && campsite.campsiteID)
     const [campsiteName, setCampsiteName] = useState(campsite && campsite.campsiteName)
@@ -103,6 +105,11 @@ import {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
+
         campsite = { campsiteID, campsiteName, facilityID, facilityName, campsiteType, facilityLongitude, facilityLatitude, uses, onLoop, permittedEquipment, amenities, feePerNight, reservationFee, maxVehicles, vehicleFee, maxPersons, tentsAllowed, maxTents, petsAllowed, maxPets, petFee, media }
 
         if (edit) {
@@ -110,7 +117,8 @@ import {
                 method: 'PUT',
                 body: JSON.stringify(campsite),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
 
@@ -134,7 +142,8 @@ import {
             method: 'POST',
             body: JSON.stringify(campsite),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
@@ -290,6 +299,7 @@ import {
                     <DrawerFooter>
                         <Cancel cancelClick={onClose} /> 
                         {edit ? <Save formName='campsiteForm' /> : <Add formName='campsiteForm' />}
+                        {error && <div className="error">{error}</div>}
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
