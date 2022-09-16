@@ -23,9 +23,10 @@ const Reservations = () => {
           }
       })
         const json = await response.json()
+
         if (response.ok) {
-            dispatch({type: 'SET_RESERVATIONS', payload: json})
             setReservations(json)
+            dispatch({type: 'SET_RESERVATIONS', payload: json})
         }
 
       } 

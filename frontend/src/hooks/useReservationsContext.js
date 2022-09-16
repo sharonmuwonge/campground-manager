@@ -2,6 +2,7 @@ import { ReservationsContext } from "../context/ReservationsContext"
 import { useContext } from "react"
 
 export const useReservationsContext = () => {
+    
     const context = useContext(ReservationsContext)
 
     if (!context) {

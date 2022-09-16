@@ -3,7 +3,7 @@ import { createContext, useReducer } from 'react'
 export const ReservationsContext = createContext()
 
 export const reservationsReducer = (state, action) => {
-
+    console.log(action)
     switch (action.type) {
         case 'SET_RESERVATIONS':
             return {
@@ -19,8 +19,9 @@ export const reservationsReducer = (state, action) => {
 }
 
 export const ReservationsContextProvider = ({ children}) => {
+
     const [state, dispatch] = useReducer(reservationsReducer, {
-        reservations: []
+        reservations: null
     })
 
     return (

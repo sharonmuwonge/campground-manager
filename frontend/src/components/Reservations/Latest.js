@@ -2,20 +2,18 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { useReservationsContext } from '../../hooks/useReservationsContext'
 import {Table, Thead, Tbody, Tr, Th, Td, TableContainer} from '@chakra-ui/react'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 const LatestReservations = () => {
 
-    const {reservations, dispatch} = useReservationsContext()
+    const {reservations} = useReservationsContext()
     const [items, setItems] = useState([])
     const navigate = useNavigate()
+    const {user} = useAuthContext()
 
     useEffect(() => {
             setItems(reservations)
-    }, [reservations])
-
-    useEffect(() => {
-            setItems(dispatch)
-    }, [dispatch])
+    }, [reservations, user])
 
     return(
         <>  
